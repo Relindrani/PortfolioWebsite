@@ -64,23 +64,23 @@ The repository is organized as a monorepo with independently deployable applicat
 
 ```
 /apps
-    /portfolio-astro -> Static portfolio & system documentation
-    /api-dotnet -> ASP.NET Core public API & orchestrator
-    /admin-rails -> Rails admin UI & workflows
-    /flutter -> Cross-platform client (web + mobile)
+    /portfolio-astro    -> Static portfolio & system documentation
+    /api-dotnet         -> ASP.NET Core public API & orchestrator
+    /admin-rails        -> Rails admin UI & workflows
+    /flutter            -> Cross-platform client (web + mobile)
 
 /services
-    /rust-core -> Deterministic business core logic
-    /go-workers -> Ingestion & infra-facing services
-    /python-analytics -> Analytics & insight generation
+    /rust-core          -> Deterministic business core logic
+    /go-workers         -> Ingestion & infra-facing services
+    /python-analytics   -> Analytics & insight generation
 
 /infra
-/terraform -> AWS infrastructure as code
+/terraform              -> AWS infrastructure as code
 
 /docs
-    ARCHITECTURE.md -> System overview
-    DECISIONS.md -> Architechtural decicion records (ADRs)
-    runbooks/ -> Operational notes & failure scenarios
+    ARCHITECTURE.md     -> System overview
+    DECISIONS.md        -> Architechtural decicion records (ADRs)
+    runbooks/           -> Operational notes & failure scenarios
 
 ```
 

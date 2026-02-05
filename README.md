@@ -19,7 +19,7 @@ Helios serves two purposes:
 - Practice failure handling, recovery, and system evolution
 - Provide a polished, static **portfolio and system narrative** alongside a live application
 
----
+---f
 
 ## High-Level Architecture
 

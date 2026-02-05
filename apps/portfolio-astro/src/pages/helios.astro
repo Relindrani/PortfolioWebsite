@@ -1,0 +1,431 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Helios — Project Overview" page="helios">
+  <div class="page page-helios">
+    <!-- Hero -->
+    <section class="page-hero" data-animate="hero" data-priority>
+      <div class="page-hero-inner">
+        <h1 class="helios-title">
+          <span class="helios-main">Helios</span>
+          <span class="helios-sub">Provisioning Architecture</span>
+        </h1>
+
+        <p class="page-subhead">
+          A modern, event-driven provisioning platform designed to replace
+          fragile legacy workflows with deterministic orchestration, real-time
+          feedback, and production-grade architecture.
+        </p>
+      </div>
+    </section>
+
+    <!-- Why Helios -->
+    <section class="content-section align-left" data-animate="section">
+      <h2>Why Helios Exists</h2>
+
+      <p>
+        Helios exists to explore how large-scale provisioning and configuration
+        systems can be designed to remain understandable, correct, and evolvable
+        under real production constraints.
+      </p>
+
+      <p>
+        In professional environments, particularly enterprise telephony
+        platforms, I repeatedly encountered systems built around tightly coupled
+        synchronous workflows, opaque long-running operations, and implicit
+        state transitions. Over time, these systems became difficult to reason
+        about, fragile to change, and costly to extend.
+      </p>
+
+      <p>
+        Helios was intentionally designed as a counterexample: a system that
+        treats orchestration, state, and feedback as first-class concerns. It
+        applies event-driven workflows, deterministic execution, and explicit
+        system boundaries to demonstrate how these problems can be addressed
+        without sacrificing operational clarity or long-term maintainability.
+      </p>
+    </section>
+
+    <!-- System Overview -->
+    <section class="content-section align-right" data-animate="section">
+      <h2>System Overview</h2>
+
+      <p>
+        Helios is a backend-first provisioning and orchestration platform
+        designed around explicit state transitions and deterministic execution.
+        Rather than treating provisioning as a collection of opaque background
+        jobs, Helios models each operation as a traceable, event-driven
+        workflow.
+      </p>
+
+      <p>
+        At its core, the system separates coordination from business logic. A
+        stable orchestration layer defines system boundaries, while correctness-
+        critical logic is isolated and shared across services.
+      </p>
+
+      <p>
+        This structure enables real-time feedback, safe retries, and recovery
+        from partial failure without relying on manual intervention, system
+        restarts, or hidden operational knowledge.
+      </p>
+    </section>
+
+    <!-- Architecture -->
+    <section
+      class="content-section architecture align-left"
+      data-animate="section"
+    >
+      <div class="architecture-inner">
+        <!-- Section header ABOVE the cards -->
+        <header class="section-header architecture-header">
+          <h2>Architecture</h2>
+          <p class="section-subhead">
+            Helios is intentionally designed with clear system boundaries and
+            explicit operational tradeoffs, favoring correctness, observability,
+            and long-term maintainability over convenience.
+          </p>
+
+          <ul class="architecture-principles">
+            <li><strong>Explicit state over implicit behavior</strong></li>
+            <li><strong>Coordination separated from business logic</strong></li>
+            <li>
+              <strong
+                >Asynchronous by default, synchronous only when safe</strong>
+            </li>
+            <li>
+              <strong
+                >Infrastructure supports the system — it doesn’t define it</strong>
+            </li>
+          </ul>
+        </header>
+
+        <!-- Two-column card layout -->
+        <div class="architecture-grid">
+          <!-- System Architecture Card -->
+          <article class="architecture-card">
+            <header class="card-header">
+              <h3>System Architecture</h3>
+              <p class="card-summary">
+                A boundary-driven system design with correctness-critical logic
+                isolated from infrastructure and delivery concerns.
+              </p>
+            </header>
+
+            <ul class="architecture-callouts">
+              <li>ASP.NET Core defines the system boundary</li>
+              <li>Business logic lives where it can’t accidentally drift</li>
+              <li>Supporting services stay replaceable</li>
+            </ul>
+
+            <details class="architecture-details">
+              <summary>View system breakdown</summary>
+
+              <div class="architecture-visual">
+                <img
+                  src="/diagrams/helios-system-architecture.svg"
+                  alt="Helios system architecture diagram"
+                />
+              </div>
+
+              <div class="architecture-body">
+                <p>
+                  Helios centers around a stable orchestration layer that
+                  defines system boundaries and coordinates all cross-service
+                  interactions. Correctness-critical logic is explicitly
+                  separated from infrastructure concerns to reduce coupling and
+                  long-term risk.
+                </p>
+
+                <ul>
+                  <li>
+                    <strong>ASP.NET Core</strong> acts as the system boundary, owning
+                    authentication, API contracts, and workflow coordination.
+                  </li>
+                  <li>
+                    <strong>Rust</strong> encapsulates deterministic business logic
+                    such as validation and state transitions, ensuring predictable
+                    behavior.
+                  </li>
+                  <li>
+                    Supporting services (<strong>Go</strong>, <strong
+                      >Python</strong
+                    >,
+                    <strong>Rails</strong>) focus on ingestion, analytics, and
+                    internal workflows behind well-defined interfaces.
+                  </li>
+                </ul>
+
+                <p class="architecture-footnote">
+                  Detailed API schemas, service contracts, and design rationale
+                  are documented in the repository.
+                </p>
+              </div>
+            </details>
+          </article>
+
+          <!-- Infrastructure Architecture Card -->
+          <article class="architecture-card">
+            <header class="card-header">
+              <h3>Infrastructure Architecture</h3>
+              <p class="card-summary">
+                A containerized, cloud-native platform designed for operational
+                clarity and predictable behavior.
+              </p>
+            </header>
+
+            <ul class="architecture-callouts">
+              <li>Containers over servers, on purpose</li>
+              <li>Async work never blocks user requests</li>
+              <li>State is explicit and centralized</li>
+            </ul>
+
+            <details class="architecture-details">
+              <summary>View infrastructure details</summary>
+
+              <div class="architecture-visual">
+                <img
+                  src="/diagrams/helios-infrastructure-architecture.svg"
+                  alt="Helios infrastructure architecture diagram"
+                />
+              </div>
+
+              <div class="architecture-body">
+                <p>
+                  Helios runs on a containerized infrastructure that mirrors
+                  common production deployments without introducing unnecessary
+                  scale or operational complexity.
+                </p>
+
+                <ul>
+                  <li>
+                    Services run as stateless containers on
+                    <strong>AWS ECS (Fargate)</strong>, removing server
+                    management while preserving clear service ownership.
+                  </li>
+                  <li>
+                    <strong>SQS</strong> decouples asynchronous workflows and protects
+                    user-facing APIs from long-running operations.
+                  </li>
+                  <li>
+                    <strong>PostgreSQL</strong> serves as the durable system of record,
+                    while <strong>Redis</strong> supports caching and idempotency.
+                  </li>
+                  <li>
+                    Infrastructure is defined using <strong>Terraform</strong> for
+                    repeatable environments and controlled change.
+                  </li>
+                </ul>
+
+                <p class="architecture-footnote">
+                  Deployment pipelines, resource definitions, and environment
+                  configuration live in the repository.
+                </p>
+              </div>
+            </details>
+          </article>
+        </div>
+      </div>
+      <p class="architecture-note">
+        <em>
+          This architecture prioritizes clarity and correctness over raw
+          throughput, reflecting the realities of systems that must be operated,
+          debugged, and evolved by real teams over time.
+        </em>
+      </p>
+    </section>
+
+    <!-- Capabilities -->
+    <section class="content-section align-right" data-animate="section">
+      <h2>System Capabilities</h2>
+
+      <p>
+        Helios is designed around a set of core capabilities that reflect the
+        realities of operating long-running, stateful systems in production.
+        Each capability prioritizes correctness, observability, and safe
+        evolution over short-term convenience.
+      </p>
+
+      <ul class="capability-grid">
+        <li>
+          <strong>Deterministic provisioning workflows</strong><br />
+          All provisioning operations are modeled as explicit state transitions, enabling
+          predictable behavior, safe retries, and reliable recovery from partial failure.
+        </li>
+
+        <li>
+          <strong>Real-time status and progress visibility</strong><br />
+          Long-running operations surface live progress and intermediate state, avoiding
+          opaque background jobs and manual status reconciliation.
+        </li>
+
+        <li>
+          <strong>Workflow orchestration and recovery</strong><br />
+          Background processes are orchestrated with built-in retry semantics and
+          failure handling, ensuring system stability under load and during error
+          conditions.
+        </li>
+
+        <li>
+          <strong>Authentication and access control</strong><br />
+          Role-based access control and SSO integration enforce clear system boundaries
+          while supporting enterprise identity requirements.
+        </li>
+
+        <li>
+          <strong>Extensible integration points</strong><br />
+          External systems interact through well-defined events and APIs, allowing
+          integrations to evolve independently without coupling to internal logic.
+        </li>
+
+        <li>
+          <strong>AI-assisted operational support</strong><br />
+          Helios integrates an AI assistant focused on improving operator understanding
+          of system behavior rather than influencing execution. Potential capabilities
+          include retrieval-augmented generation (RAG) over system documentation,
+          workflow state, and historical events to provide contextual explanations,
+          summaries, and guided diagnostics.
+        </li>
+      </ul>
+
+      <p class="architecture-note">
+        <em>
+          AI functionality in Helios is intentionally scoped to read-only,
+          advisory use cases. The assistant operates over deterministic system
+          state, workflow history, and documented behavior using retrieval-based
+          techniques, providing contextual explanations and summaries without
+          influencing execution paths or mutating system state.
+        </em>
+      </p>
+    </section>
+
+    <section class="content-section align-left" data-animate="section">
+      <h2>Design Constraints & Non-Goals</h2>
+
+      <p>
+        Helios is intentionally constrained to avoid the complexity and
+        ambiguity that commonly accumulate in long-lived systems.
+      </p>
+
+      <ul class="architecture-list">
+        <li>
+          <strong>No AI-driven execution or decision-making:</strong>
+          AI is deliberately excluded from provisioning logic, validation paths, and
+          state transitions. All system behavior remains deterministic, auditable,
+          and explainable without probabilistic dependencies.
+        </li>
+
+        <li>
+          <strong>No synchronous provisioning chains:</strong>
+          Long-running operations are never executed inline with user requests. All
+          workflows are modeled as asynchronous state machines with explicit progress
+          and failure handling.
+        </li>
+
+        <li>
+          <strong>No hidden or implicit system state:</strong>
+          Helios avoids background jobs or side effects that cannot be observed or
+          reasoned about. State transitions are explicit, persisted, and traceable.
+        </li>
+
+        <li>
+          <strong>No over-abstracted infrastructure:</strong>
+          The platform favors simple, understandable cloud primitives over complex
+          platform layers in order to keep operational behavior predictable.
+        </li>
+
+        <li>
+          <strong>Not a turnkey commercial product:</strong>
+          Helios is intentionally scoped as an architectural exploration and portfolio
+          system, prioritizing clarity of design over feature completeness or market
+          fit.
+        </li>
+      </ul>
+
+      <p class="architecture-note">
+        <em>
+          These constraints reflect real production tradeoffs rather than
+          technical limitations, and they guide the system toward
+          maintainability over novelty.
+        </em>
+      </p>
+    </section>
+
+    <!-- Roadmap -->
+    <section class="content-section roadmap align-right" data-animate="section">
+      <!-- Header stays aligned right -->
+      <header class="roadmap-header">
+        <h2>Current State & Roadmap</h2>
+
+        <p>
+          Helios is currently in an architecture-first phase. The system design,
+          boundaries, and constraints are intentionally defined before any
+          production code is written in order to reduce rework and architectural
+          drift.
+        </p>
+
+        <p>
+          This mirrors how large systems are often approached in practice:
+          aligning on ownership, execution models, and failure behavior before
+          implementation.
+        </p>
+      </header>
+
+      <!-- Two-column roadmap content -->
+      <div class="roadmap-grid">
+        <div class="roadmap-column">
+          <h3 class="roadmap-heading">Initial Implementation Focus</h3>
+
+          <ul class="architecture-list">
+            <li>
+              <strong>System boundary and API contracts:</strong>
+              Define the ASP.NET Core orchestration layer, authentication model, and
+              external API surfaces.
+            </li>
+            <li>
+              <strong>Deterministic workflow foundation:</strong>
+              Implement core provisioning workflows with explicit state transitions.
+            </li>
+            <li>
+              <strong>Rust business logic core:</strong>
+              Establish the shared correctness layer for validation and guarantees.
+            </li>
+            <li>
+              <strong>Eventing and asynchronous processing:</strong>
+              Introduce queue-based decoupling for long-running work.
+            </li>
+            <li>
+              <strong>Observability and visibility:</strong>
+              Instrument workflows with structured logs and correlation IDs.
+            </li>
+          </ul>
+        </div>
+
+        <div class="roadmap-column">
+          <h3 class="roadmap-heading">Planned Expansion</h3>
+
+          <ul class="architecture-list">
+            <li>
+              Administrative tooling and internal workflows for managing system
+              state.
+            </li>
+            <li>Analytics and reporting services for historical insight.</li>
+            <li>
+              AI-assisted explanations layered on deterministic system state.
+            </li>
+            <li>Infrastructure automation and environment hardening.</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="architecture-note">
+        <em>
+          The roadmap prioritizes architectural integrity and operational
+          correctness over feature velocity, reflecting how long-lived systems
+          are sustainably built.
+        </em>
+      </p>
+    </section>
+  </div>
+</BaseLayout>

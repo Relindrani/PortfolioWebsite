@@ -1,0 +1,234 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Experience" page="professional">
+  <div class="page page-professional">
+    <section class="experience-hero">
+      <h1>Experience</h1>
+      <p class="experience-subhead">
+        A summary of my professional background, focused on backend systems,
+        architecture, and production ownership.
+      </p>
+    </section>
+
+    <!-- Work Experience -->
+    <section class="experience-section">
+      <h2>Experience</h2>
+
+      <div class="timeline">
+        <!-- Experience Entry -->
+        <article class="timeline-item current">
+          <div class="timeline-year">2022</div>
+
+          <div class="timeline-marker"></div>
+
+          <div class="experience-card">
+            <!-- Content -->
+            <div class="experience-content">
+              <header class="experience-header">
+                <h3>Software Engineer</h3>
+                <span class="experience-company">
+                  XTIUM (formerly EvolveIP)
+                </span>
+                <span class="experience-dates"> Jul 2022 – Present </span>
+              </header>
+
+              <ul class="experience-points">
+                <li>
+                  Led development of a next-generation provisioning platform,
+                  modernizing a complex legacy VoIP configuration system.
+                </li>
+                <li>
+                  Designed event-driven workflows with real-time user feedback
+                  for long-running provisioning operations.
+                </li>
+                <li>
+                  Owned both backend and frontend development, collaborating
+                  closely with product, SRE, and support teams.
+                </li>
+                <li>
+                  Integrated SSO, enhanced reporting, and AI-powered assistance
+                  to improve usability and operational efficiency.
+                </li>
+              </ul>
+
+              <details class="experience-deep-dive">
+                <summary>
+                  <span>Deep dive</span>
+                  <svg viewBox="0 0 20 20" aria-hidden="true">
+                    <path
+                      d="M6 8l4 4 4-4"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"></path>
+                  </svg>
+                </summary>
+
+                <div class="deep-dive-content">
+                  <p>
+                    This initiative was started to address scaling limitations,
+                    fragmented UX, and operational risk in a long-running legacy
+                    provisioning platform used for enterprise VoIP services.
+                  </p>
+
+                  <ul>
+                    <li>
+                      Designed and implemented a background provisioning engine
+                      using
+                      <strong>Temporal</strong>, enabling deterministic
+                      workflows with live status streaming back to the UI.
+                    </li>
+                    <li>
+                      Re-architected identity and access management using
+                      <strong>SSO and role-based permissions</strong>, aligning
+                      with enterprise security requirements.
+                    </li>
+                    <li>
+                      Built real-time user feedback mechanisms for provisioning
+                      steps, significantly improving transparency and
+                      supportability.
+                    </li>
+                    <li>
+                      Integrated an <strong>AI-powered assistant</strong> using MCP
+                      tooling to provide application-specific context, reducing support
+                      load and improving user experience.
+                    </li>
+                    <li>
+                      Acted as lead developer on the new platform, guiding
+                      architectural decisions and working directly with product
+                      owners and support teams to refine workflows.
+                    </li>
+                    <li>
+                      Collaborated closely with SRE to adopt and operate modern
+                      tooling, including Kubernetes, ArgoCD, CI/CD pipelines,
+                      and cloud infrastructure.
+                    </li>
+                  </ul>
+                </div>
+              </details>
+            </div>
+          </div>
+        </article>
+
+        <article class="timeline-item">
+          <div class="timeline-year">2020</div>
+
+          <div class="timeline-marker"></div>
+
+          <div class="experience-card">
+            <!-- Content -->
+            <div class="experience-content">
+              <header class="experience-header">
+                <h3>Associate Programmer</h3>
+                <span class="experience-company"> AudioCARE Systems </span>
+                <span class="experience-dates"> Apr 2020 – Jul 2022 </span>
+              </header>
+
+              <ul class="experience-points">
+                <li>
+                  Maintained and enhanced a suite of ~20 legacy applications
+                  under strict government compliance requirements.
+                </li>
+                <li>
+                  Worked across multiple systems and interfaces used by
+                  healthcare and federal data platforms.
+                </li>
+                <li>
+                  Contributed to platform modernization efforts and adoption of
+                  modern development tooling.
+                </li>
+                <li>
+                  Led the conversion of terminal-based applications into a
+                  React-based internal web interface.
+                </li>
+              </ul>
+
+              <details class="experience-deep-dive">
+                <summary>
+                  <span>Deep dive</span>
+                  <svg viewBox="0 0 20 20" aria-hidden="true">
+                    <path
+                      d="M6 8l4 4 4-4"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"></path>
+                  </svg>
+                </summary>
+
+                <div class="deep-dive-content">
+                  <p>
+                    AudioCARE Systems supported healthcare and government
+                    clients, requiring strict adherence to compliance,
+                    reliability, and delivery timelines.
+                  </p>
+
+                  <ul>
+                    <li>
+                      Maintained and enhanced a diverse set of legacy
+                      applications with varying architectures and technology
+                      stacks.
+                    </li>
+                    <li>
+                      Worked on interfaces enabling applications to integrate
+                      with external data platforms across different customer
+                      environments.
+                    </li>
+                    <li>
+                      Assisted in migrating products onto a newer development
+                      platform, improving maintainability and consistency.
+                    </li>
+                    <li>
+                      Played a key role in modernizing internal workflows by
+                      introducing tools such as Git, VS Code, and Jira.
+                    </li>
+                    <li>
+                      Became the primary developer responsible for converting
+                      terminal-based applications into a React-based web
+                      interface used internally by staff.
+                    </li>
+                  </ul>
+                </div>
+              </details>
+            </div>
+          </div>
+        </article>
+
+        <!-- Another entry... -->
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section class="experience-section">
+      <h2>Education</h2>
+
+      <article class="education-card">
+        <h3>B.S. in Computer Science</h3>
+        <span class="education-school">
+          University of Advancing Technology
+        </span>
+        <span class="education-date">2019</span>
+      </article>
+    </section>
+
+    <!-- Certifications -->
+    <section class="experience-section">
+      <h2>Certifications</h2>
+
+      <div class="cert-grid">
+        <!-- Future cert placeholder -->
+        <article class="cert-card placeholder">
+          <!-- empty, placeholder, or pending styling -->
+          <div class="cert-badge empty">
+            +
+            <!-- <img src="/badges/certname.svg" alt="alt text" /> -->
+          </div>
+          <div class="cert-body">
+            <h3>Upcoming Certification</h3>
+            <span class="cert-meta">Planned</span>
+          </div>
+        </article>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

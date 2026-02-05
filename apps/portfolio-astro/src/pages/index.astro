@@ -1,0 +1,664 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Brandon Bixler — Software Engineer" page="default">
+  <div class="page page-default">
+    <!-- ========================= -->
+    <!-- Hero -->
+    <!-- ========================= -->
+    <section class="hero" data-animate="hero">
+      <div class="hero-inner">
+        <p class="hero-eyebrow">Software Engineer</p>
+
+        <h1>
+          Brandon Bixler<br />
+          <span class="hero-highlight">Building Reliable Systems</span>
+        </h1>
+
+        <p class="hero-subhead">
+          Full-stack software engineer with a backend and infrastructure focus.
+          I design and operate production-grade systems that scale, fail
+          gracefully, and deliver real value.
+        </p>
+
+        <div class="hero-actions">
+          <a href="/experience" class="button primary">Experience</a>
+          <a href="/helios" class="button secondary">Helios Project</a>
+          <a
+            href="https://github.com/Relindrani/PortfolioWebsite"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="button secondary"
+          >
+            GitHub
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section class="about" data-animate="section">
+      <h2>What I Focus On</h2>
+
+      <div class="card-grid">
+        <article class="card" data-animate="card">
+          <h3>Backend APIs</h3>
+          <p>
+            Designing stable, versioned APIs with clear ownership boundaries,
+            authentication, and long-term maintainability.
+          </p>
+        </article>
+
+        <article class="card" data-animate="card">
+          <h3>Distributed Systems</h3>
+          <p>
+            Event-driven architectures, async workflows, and systems that
+            degrade gracefully under partial failure.
+          </p>
+        </article>
+
+        <article class="card" data-animate="card">
+          <h3>Applied AI Integration</h3>
+          <p>
+            Building LLM-driven capabilities using structured context, system
+            boundaries, and feedback loops to support real product use cases.
+          </p>
+        </article>
+
+        <article class="card" data-animate="card">
+          <h3>System Design</h3>
+          <p>
+            Translating business requirements into resilient, evolvable system
+            architectures.
+          </p>
+        </article>
+
+        <article class="card" data-animate="card">
+          <h3>Observability & Reliability</h3>
+          <p>
+            Logging, metrics, alerting, and debugging distributed systems in
+            production environments.
+          </p>
+        </article>
+
+        <article class="card" data-animate="card">
+          <h3>Modernization & Migration</h3>
+          <p>
+            Incrementally modernizing legacy systems without breaking existing
+            workflows or customer trust.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section class="tech-stack" data-lazy>
+      <h2>Technology Stack</h2>
+
+      <div class="tech-legend">
+        <span class="legend-item professional">
+          <span class="legend-dot"></span>
+          Professional Experience
+        </span>
+        <span class="legend-item helios">
+          <span class="legend-dot"></span>
+          Used in Helios
+        </span>
+        <span class="legend-item">
+          <span class="legend-dot neutral"></span>
+          Working Knowledge
+        </span>
+      </div>
+
+      <div class="stack-grid">
+        <!-- Backend -->
+        <div
+          class="stack-card"
+          data-lazy
+          data-animate="card"
+          style="--delay: 0ms"
+        >
+          <h3 class="stack-title">Backend</h3>
+
+          <div class="icon-grid" data-animate="icons">
+            <!-- Spring -->
+            <a
+              href="/experience"
+              class="tech-item professional"
+              data-tip-title="Java / Spring Boot"
+              data-tip-context="- Professional Use"
+              data-tip-body="Modernized and re-architected legacy systems"
+              aria-label="Java / Spring Boot"
+            >
+              <span class="icon-surface">
+                <img src="/icons/spring.svg" alt="" loading="lazy" />
+              </span>
+            </a>
+
+            <!-- ASP.NET -->
+            <a
+              href="/helios"
+              class="tech-item helios"
+              data-tip-title="ASP.NET Core"
+              data-tip-context="- Used in Helios"
+              data-tip-body="Primary orchestrator API responsible for authentication, routing, and coordination between backend services."
+              aria-label="ASP.NET Core (used in Helios)"
+            >
+              <span class="icon-surface">
+                <img src="/icons/dotnet.svg" alt="" loading="lazy" />
+              </span>
+            </a>
+
+            <!-- Rust -->
+            <a
+              href="/helios"
+              class="tech-item helios"
+              data-tip-title="Rust"
+              data-tip-context="- Used in Helios"
+              data-tip-body="Implements deterministic, correctness-critical business logic with strong guarantees around memory safety, concurrency, and performance."
+              aria-label="Rust (used in Helios)"
+            >
+              <span class="icon-surface">
+                <img src="/icons/rust.svg" alt="" loading="lazy" />
+              </span>
+            </a>
+
+            <!-- Node -->
+            <div
+              class="tech-item"
+              data-tip-title="Node.js"
+              data-tip-body="Comfortable with the Node.js runtime through extensive TypeScript usage in React and Next.js environments, with a strong foundation in backend system design from Java and Spring Boot."
+              aria-label="Node.js"
+            >
+              <span class="icon-surface">
+                <img src="/icons/nodejs.svg" alt="" loading="lazy" />
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="stack-card"
+          data-lazy
+          data-animate="card"
+          style="--delay: 150ms"
+        >
+          <h3 class="stack-title">Frontend</h3>
+
+          <div class="icon-grid" data-animate="icons">
+            <!-- React -->
+            <a
+              href="/experience"
+              class="tech-item professional"
+              data-tip-title="React"
+              data-tip-context="- Professional Use"
+              data-tip-body="Built and maintained production-grade React applications, focusing on maintainability, performance, and complex state-driven user interfaces."
+              aria-label="React (professional)"
+            >
+              <span class="icon-surface">
+                <img src="/icons/react.svg" alt="" loading="lazy" />
+              </span>
+            </a>
+
+            <!-- Next.js -->
+            <a
+              href="/experience"
+              class="tech-item professional"
+              data-tip-title="Next.js"
+              data-tip-context="- Professional Use"
+              data-tip-body="Used to modernize legacy systems with server-rendered React, improving performance, routing, and long-term maintainability."
+              aria-label="Next.js (professional)"
+            >
+              <span class="icon-surface">
+                <img src="/icons/nextjs.svg" alt="" loading="lazy" />
+              </span>
+            </a>
+
+            <!-- Flutter -->
+            <a
+              href="/helios"
+              class="tech-item helios"
+              data-tip-title="Flutter"
+              data-tip-context="- Used in Helios"
+              data-tip-body="Powers a cross-platform dashboard for Helios, enabling a single codebase to deliver a consistent UI across desktop and mobile environments."
+              aria-label="Flutter (used in Helios)"
+            >
+              <span class="icon-surface">
+                <img src="/icons/flutter.svg" alt="" loading="lazy" />
+              </span>
+            </a>
+
+            <!-- Astro -->
+            <div
+              class="tech-item"
+              data-tip-title="Astro"
+              data-tip-context="- This portfolio site"
+              data-tip-body="Drives a static, content-focused portfolio with minimal JavaScript, emphasizing performance, clarity, and long-term maintainability."
+              aria-label="Astro (portfolio site)"
+            >
+              <span class="icon-surface">
+                <img src="/icons/astro.svg" alt="" loading="lazy" />
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="stack-card"
+          data-lazy
+          data-animate="card"
+          style="--delay: 300ms"
+        >
+          <h3 class="stack-title">Data & Analytics</h3>
+
+          <div class="icon-grid" data-animate="icons">
+            <a
+              href="/experience"
+              class="tech-item professional"
+              data-tip-title="PostgreSQL"
+              data-tip-context="- Professional Use & in Helios"
+              data-tip-body="Primary relational datastore used for transactional workloads, schema-driven data modeling, and reliable persistence across both personal and professional systems."
+              aria-label="PostgreSQL (Helios and professional)"
+            >
+              <span class="icon-surface">
+                <img src="/icons/postgresql.svg" alt="" loading="lazy" />
+              </span>
+            </a>
+
+            <a
+              href="/experience"
+              class="tech-item professional"
+              data-tip-title="MongoDB"
+              data-tip-context="- Professional Use"
+              data-tip-body="Utilized for flexible, schema-less data storage in scenarios requiring rapid iteration and handling of unstructured data."
+              aria-label="MongoDB (professional)"
+            >
+              <span class="icon-surface">
+                <img src="/icons/mongo.svg" alt="" loading="lazy" />
+              </span>
+            </a>
+
+            <a
+              href="/experience"
+              class="tech-item professional"
+              data-tip-title="Snowflake"
+              data-tip-context="- Professional Use"
+              data-tip-body="Integrated as a downstream enterprise data warehouse for querying and reporting, primarily focused on data retrieval rather than pipeline ownership."
+              aria-label="Snowflake (professional integration)"
+            >
+              <span class="icon-surface">
+                <img src="/icons/snowflake.svg" alt="" loading="lazy" />
+              </span>
+            </a>
+
+            <a
+              href="/helios"
+              class="tech-item helios"
+              data-tip-title="Redis"
+              data-tip-context="- Used in Helios"
+              data-tip-body="Used for caching, idempotency control, and rate limiting to improve performance and ensure safe event processing in an event-driven system."
+              aria-label="Redis (Helios)"
+            >
+              <span class="icon-surface">
+                <img src="/icons/redis.svg" alt="" loading="lazy" />
+              </span>
+            </a>
+
+            <a
+              href="/helios"
+              class="tech-item helios"
+              data-tip-title="Python"
+              data-tip-context="- Used in Helios"
+              data-tip-body="Supports analytics workflows and insight generation through batch processing and data analysis pipelines separate from the core transactional system."
+              aria-label="Python (Helios)"
+            >
+              <span class="icon-surface">
+                <img src="/icons/python.svg" alt="" loading="lazy" />
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <div
+          class="stack-card"
+          data-lazy
+          data-animate="card"
+          style="--delay: 450ms"
+        >
+          <h3 class="stack-title">Infrastructure</h3>
+
+          <div class="icon-grid" data-animate="icons">
+            <a
+              href="/experience"
+              class="tech-item professional"
+              data-tip-title="Docker"
+              data-tip-context="- Used Professionally & in Helios"
+              data-tip-body="Used extensively for local development environments and service isolation, providing consistency between development and deployment workflows."
+              aria-label="Docker (professional and Helios)"
+            >
+              <span class="icon-surface">
+                <img src="/icons/docker.svg" alt="" loading="lazy" />
+              </span>
+            </a>
+
+            <a
+              href="/experience"
+              class="tech-item professional"
+              data-tip-title="ArgoCD"
+              data-tip-context="- Professional Use"
+              data-tip-body="Used for observing deployments - implementations done by separate SRE team."
+              aria-label="ArgoCD (professional)"
+            >
+              <span class="icon-surface">
+                <img src="/icons/argocd.svg" alt="" loading="lazy" />
+              </span>
+            </a>
+
+            <a
+              href="/helios"
+              class="tech-item helios"
+              data-tip-title="AWS"
+              data-tip-context="- Helios Infrastructure (Planned)"
+              data-tip-body="Target deployment platform for Helios, leveraging managed services such as ECS, RDS, and SQS to support a scalable, event-driven architecture."
+              aria-label="AWS (Helios planned)"
+            >
+              <span class="icon-surface">
+                <img src="/icons/aws.svg" alt="" loading="lazy" />
+              </span>
+            </a>
+
+            <a
+              href="/helios"
+              class="tech-item helios"
+              data-tip-title="Terraform"
+              data-tip-context="- Helios Infrastructure (Planned)"
+              data-tip-body="Infrastructure-as-code tool selected for defining and managing cloud resources in a repeatable, version-controlled manner."
+              aria-label="Terraform (Helios planned)"
+            >
+              <span class="icon-surface">
+                <img src="/icons/terraform.svg" alt="" loading="lazy" />
+              </span>
+            </a>
+
+            <a
+              href="/helios"
+              class="tech-item helios"
+              data-tip-title="GitHub Actions"
+              data-tip-context="- Helios CI/CD (Learning & Implementation)"
+              data-tip-body="Selected CI/CD platform for Helios to automate builds, run tests, and deploy containerized services as part of learning modern pipeline design."
+              aria-label="GitHub Actions (Helios)"
+            >
+              <span class="icon-surface">
+                <img src="/icons/githubactions.svg" alt="" loading="lazy" />
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <div
+          class="stack-card"
+          data-lazy
+          data-animate="card"
+          style="--delay: 600ms"
+        >
+          <h3 class="stack-title">CI/CD & Delivery</h3>
+
+          <div class="icon-grid" data-animate="icons">
+            <a
+              href="/experience"
+              class="tech-item professional"
+              data-tip-title="Bamboo"
+              data-tip-context="- Professional Use"
+              data-tip-body="Used for building and deploying software projects in a professional environment."
+              aria-label="Bamboo (professional)"
+            >
+              <span class="icon-surface">
+                <img src="/icons/bamboo.svg" alt="" loading="lazy" />
+              </span>
+            </a>
+
+            <a
+              href="/experience"
+              class="tech-item professional"
+              data-tip-title="Bitbucket"
+              data-tip-context="- Professional Use"
+              data-tip-body="Used for source code management, collaboration, and code review in a professional setting."
+              aria-label="Bitbucket (professional)"
+            >
+              <span class="icon-surface">
+                <img src="/icons/bitbucket.svg" alt="" loading="lazy" />
+              </span>
+            </a>
+
+            <a
+              href="/experience"
+              class="tech-item professional"
+              data-tip-title="Testing & QA"
+              data-tip-context="- Professional Use"
+              data-tip-body="Wrote unit and integration tests for code quality analysis, automated testing, and ensuring software meets quality standards in a professional environment."
+              aria-label="Testing & QA (professional)"
+            >
+              <span class="icon-surface">
+                <img src="/icons/testing.svg" alt="" loading="lazy" />
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <div
+          class="stack-card"
+          data-lazy
+          data-animate="card"
+          style="--delay: 750ms"
+        >
+          <h3 class="stack-title">Development & Productivity</h3>
+
+          <div class="icon-grid" data-animate="icons">
+            <div
+              class="tech-item professional"
+              data-tip-title="VS Code"
+              data-tip-context="- Professional & Helios IDE"
+              data-tip-body="Primary IDE for daily development, used for backend, frontend, and infrastructure work with debugging, extensions, and container workflows."
+              aria-label="VS Code (professional and Helios)"
+            >
+              <span class="icon-surface">
+                <img src="/icons/vscode.svg" alt="" loading="lazy" />
+              </span>
+            </div>
+
+            <div
+              class="tech-item professional"
+              data-tip-title="Git"
+              data-tip-context="- Professional & Helios Version Control"
+              data-tip-body="Used for source control, collaboration, and code review workflows across production systems and the Helios monorepo."
+              aria-label="Git (professional and Helios)"
+            >
+              <span class="icon-surface">
+                <img src="/icons/git.svg" alt="" loading="lazy" />
+              </span>
+            </div>
+
+            <div
+              class="tech-item professional"
+              data-tip-title="Jira"
+              data-tip-context="- Professional Use"
+              data-tip-body="Used for sprint planning, backlog management, and coordinating work across engineering, product, and SRE teams."
+              aria-label="Jira (professional)"
+            >
+              <span class="icon-surface">
+                <img src="/icons/jira.svg" alt="" loading="lazy" />
+              </span>
+            </div>
+
+            <div
+              class="tech-item professional"
+              data-tip-title="Confluence"
+              data-tip-context="- Professional Use"
+              data-tip-body="Used for technical documentation, architectural decision records, and cross-team knowledge sharing."
+              aria-label="Confluence (professional)"
+            >
+              <span class="icon-surface">
+                <img src="/icons/confluence.svg" alt="" loading="lazy" />
+              </span>
+            </div>
+
+            <div
+              class="tech-item professional"
+              data-tip-title="Cursor"
+              data-tip-context="- Professional Use"
+              data-tip-body="AI-powered coding assistant integrated into the IDE to enhance productivity and code quality."
+              aria-label="Cursor (professional)"
+            >
+              <span class="icon-surface">
+                <img src="/icons/cursor.svg" alt="" loading="lazy" />
+              </span>
+            </div>
+
+            <div
+              class="tech-item professional"
+              data-tip-title="Postman"
+              data-tip-context="- Professional Use"
+              data-tip-body="Used for API testing, development, and collaboration across teams to ensure reliable and well-documented endpoints."
+              aria-label="Postman (professional)"
+            >
+              <span class="icon-surface">
+                <img src="/icons/postman.svg" alt="" loading="lazy" />
+              </span>
+            </div>
+
+            <div
+              class="tech-item professional"
+              data-tip-title="Intellij IDEA"
+              data-tip-context="- Professional Use"
+              data-tip-body="Used for Java and Spring Boot development with advanced code analysis, refactoring, and debugging features."
+              aria-label="Intellij IDEA (professional)"
+            >
+              <span class="icon-surface">
+                <img src="/icons/intellij.svg" alt="" loading="lazy" />
+              </span>
+            </div>
+
+            <div
+              class="tech-item professional"
+              data-tip-title="Webstorm"
+              data-tip-context="- Professional Use"
+              data-tip-body="Used for frontend and full-stack JavaScript/TypeScript development, providing robust tools for code quality and debugging."
+              aria-label="Webstorm (professional)"
+            >
+              <span class="icon-surface">
+                <img src="/icons/webstorm.svg" alt="" loading="lazy" />
+              </span>
+            </div>
+          </div>
+        </div>
+        <div
+          class="stack-card"
+          data-lazy
+          data-animate="card"
+          style="--delay: 900ms"
+        >
+          <h3 class="stack-title">Systems & Architecture</h3>
+
+          <div class="icon-grid" data-animate="icons">
+            <div
+              class="tech-item professional"
+              data-tip-title="Event-Driven Architecture"
+              data-tip-context="- Professional Systems & Helios Design"
+              data-tip-body="Used to decouple services, improve scalability, and enable asynchronous processing. Core architectural pattern for Helios."
+              aria-label="Event-driven architecture (professional and Helios)"
+            >
+              <span class="icon-surface">
+                <img src="/icons/event.svg" alt="" loading="lazy" />
+              </span>
+            </div>
+
+            <div
+              class="tech-item professional"
+              data-tip-title="Workflow Orchestration"
+              data-tip-context="- Professional Systems & Helios Design"
+              data-tip-body="Designed and maintained background workflows and long-running processes using orchestration and scheduling systems to ensure reliability and visibility."
+              aria-label="Workflow orchestration (professional and Helios)"
+            >
+              <span class="icon-surface">
+                <img src="/icons/workflow.svg" alt="" loading="lazy" />
+              </span>
+            </div>
+
+            <div
+              class="tech-item professional"
+              data-tip-title="AI & LLM Integration"
+              data-tip-context="- Professional Systems & Helios Design"
+              data-tip-body="Integrated LLM-powered features into production systems, including context-aware assistants and system-to-system interactions."
+              aria-label="AI and LLM integration (professional and Helios)"
+            >
+              <span class="icon-surface">
+                <img src="/icons/ai.svg" alt="" loading="lazy" />
+              </span>
+            </div>
+          </div>
+        </div>
+        <div
+          class="stack-card"
+          data-lazy
+          data-animate="card"
+          style="--delay: 1050ms"
+        >
+          <h3 class="stack-title">Security & Reliability</h3>
+
+          <div class="icon-grid" data-animate="icons">
+            <div
+              class="tech-item professional"
+              data-tip-title="SSO / Identity Management"
+              data-tip-context="- Professional Use"
+              data-tip-body="Implemented and maintained single sign-on solutions and identity management systems to ensure secure access control across multi-tenant environments."
+              aria-label="SSO and Identity Management (professional)"
+            >
+              <span class="icon-surface">
+                <img src="/icons/userlock.svg" alt="" loading="lazy" />
+              </span>
+            </div>
+
+            <div
+              class="tech-item professional"
+              data-tip-title="Snyk"
+              data-tip-context="- Professional Use"
+              data-tip-body="Utilized for vulnerability scanning, dependency management, and ensuring code security in professional software development."
+              aria-label="Snyk (professional)"
+            >
+              <span class="icon-surface">
+                <img src="/icons/snyk.svg" alt="" loading="lazy" />
+              </span>
+            </div>
+
+            <div
+              class="tech-item professional"
+              data-tip-title="Elastic"
+              data-tip-context="- Professional Use"
+              data-tip-body="Used for logging, monitoring, and analyzing system performance and reliability in production environments."
+              aria-label="Elastic (professional)"
+            >
+              <span class="icon-surface">
+                <img src="/icons/elastic.svg" alt="" loading="lazy" />
+              </span>
+            </div>
+
+            <div
+              class="tech-item professional"
+              data-tip-title="Error Handling & Retries"
+              data-tip-context="- Professional Use"
+              data-tip-body="Implemented robust error handling and retry mechanisms to ensure system resilience and graceful degradation in production environments."
+              aria-label="Error Handling and Retries (professional)"
+            >
+              <span class="icon-surface">
+                <img src="/icons/shield.svg" alt="" loading="lazy" />
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

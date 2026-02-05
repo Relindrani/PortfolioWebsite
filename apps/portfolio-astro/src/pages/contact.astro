@@ -1,0 +1,107 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Contact | Brandon Bixler" page="default">
+  <div class="page page-default">
+    <section class="contact-hero">
+      <div class="container">
+        <h1>Let’s Talk</h1>
+        <p class="contact-subhead">
+          Whether you’re hiring for backend or full-stack roles, or want to dive
+          into system design and architecture, I’m happy to discuss how I
+          approach building production systems.
+        </p>
+      </div>
+    </section>
+
+    <section class="contact-content">
+      <div class="container contact-grid">
+        <!-- Direct Contact -->
+        <div class="contact-card">
+          <h2>Reach Me Directly</h2>
+          <ul class="contact-list">
+            <li>
+              <strong>Email</strong>
+              <a href="mailto:brandonbixler21@yahoo.com">
+                brandonbixler21@yahoo.com
+              </a>
+            </li>
+
+            <li>
+              <strong>LinkedIn</strong>
+              <a
+                href="https://www.linkedin.com/in/brandon-bixler-39117b104/"
+                target="_blank"
+              >
+                linkedin.com/in/brandon-bixler-39117b104
+              </a>
+            </li>
+
+            <li>
+              <strong>GitHub</strong>
+              <a
+                href="https://github.com/Relindrani/PortfolioWebsite"
+                target="_blank"
+              >
+                github.com/Relindrani
+              </a>
+            </li>
+          </ul>
+          <div class="contact-open">
+            <h3>What I’m Looking For</h3>
+            <p class="contact-lead">
+              I’m focused on roles where I can own systems end-to-end and help
+              shape their direction.
+            </p>
+
+            <ul>
+              <li>Senior or Lead Backend / Full-Stack Engineering roles</li>
+              <li>
+                Ownership of backend systems, architecture, and long-term design
+              </li>
+              <li>
+                Modernization or greenfield projects with real production impact
+              </li>
+              <li>Event-driven, workflow-oriented, or distributed systems</li>
+              <li>
+                Teams building pragmatic, maintainable solutions (not
+                hype-driven)
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-card">
+          <h2>Send a Message</h2>
+
+          <form class="contact-form">
+            <label>
+              Name
+              <input type="text" name="name" required />
+            </label>
+
+            <label>
+              Email
+              <input type="email" name="email" required />
+            </label>
+
+            <label>
+              Message
+              <textarea name="message" rows="5" required></textarea>
+            </label>
+
+            <button
+              type="submit"
+              class="button primary"
+              style="box-shadow: none;"
+            >
+              Send Message →
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

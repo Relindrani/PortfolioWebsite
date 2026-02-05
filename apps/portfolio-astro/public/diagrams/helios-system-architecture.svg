@@ -1,0 +1,128 @@
+<svg
+  width="900"
+  height="520"
+  viewBox="0 0 900 520"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <!-- Flutter -->
+  <rect x="360" y="30" width="180" height="60" rx="10"
+    fill="rgba(255,255,255,0.03)"
+    stroke="rgba(255,255,255,0.08)"
+  />
+  <text x="450" y="55" text-anchor="middle"
+    font-size="14" font-weight="600"
+    font-family="system-ui, sans-serif"
+    fill="#e5e7eb">Flutter</text>
+  <text x="450" y="72" text-anchor="middle"
+    font-size="12"
+    font-family="system-ui, sans-serif"
+    fill="#9ca3af">Client UI</text>
+
+  <!-- Line -->
+  <line x1="450" y1="90" x2="450" y2="140"
+    stroke="rgba(255,255,255,0.25)" />
+
+  <!-- ASP.NET Core -->
+  <rect x="310" y="140" width="280" height="100" rx="12"
+    fill="rgba(122,162,255,0.14)"
+    stroke="rgba(122,162,255,0.35)"
+  />
+  <text x="450" y="170" text-anchor="middle"
+    font-size="14" font-weight="600"
+    font-family="system-ui, sans-serif"
+    fill="#6366f1">C# / ASP.NET Core</text>
+  <text x="450" y="190" text-anchor="middle"
+    font-size="12"
+    font-family="system-ui, sans-serif"
+    fill="#9ca3af">System Orchestrator</text>
+  <text x="450" y="210" text-anchor="middle"
+    font-size="12"
+    font-family="system-ui, sans-serif"
+    fill="#9ca3af">Auth · Public API · Coordination · Messaging</text>
+    
+
+  <!-- Rust -->
+  <rect x="20" y="290" width="200" height="80" rx="10"
+    fill="rgba(255,255,255,0.03)"
+    stroke="rgba(255,255,255,0.08)"
+  />
+  <text x="120" y="320" text-anchor="middle"
+    font-size="14" font-weight="600"
+    font-family="system-ui, sans-serif"
+    fill="#e5e7eb">Rust</text>
+  <text x="120" y="340" text-anchor="middle"
+    font-size="12"
+    font-family="system-ui, sans-serif"
+    fill="#9ca3af">Deterministic Logic</text>
+  <text x="120" y="355" text-anchor="middle"
+    font-size="12"
+    font-family="system-ui, sans-serif"
+    fill="#9ca3af">Validation · State Transitions</text>
+
+  <!-- Go -->
+  <rect x="240" y="290" width="200" height="80" rx="10"
+    fill="rgba(255,255,255,0.03)"
+    stroke="rgba(255,255,255,0.08)"
+  />
+  <text x="340" y="320" text-anchor="middle" 
+    font-size="14" font-weight="600"
+    font-family="system-ui, sans-serif"
+    fill="#e5e7eb">Go</text>
+  <text x="340" y="340" text-anchor="middle"
+    font-size="12"
+    font-family="system-ui, sans-serif"
+    fill="#9ca3af">Microservices</text>
+  <text x="340" y="355" text-anchor="middle"
+    font-size="12"
+    font-family="system-ui, sans-serif"
+    fill="#9ca3af">Webhooks · Fan-out · Jobs
+  </text>
+
+  <!-- Rails -->
+  <rect x="460" y="290" width="200" height="80" rx="10"
+    fill="rgba(255,255,255,0.03)"
+    stroke="rgba(255,255,255,0.08)"
+  />
+  <text x="560" y="320" text-anchor="middle"
+    font-size="14" font-weight="600"
+    font-family="system-ui, sans-serif"
+    fill="#e5e7eb">Ruby on Rails</text>
+  <text x="560" y="340" text-anchor="middle"
+    font-size="12"
+    font-family="system-ui, sans-serif"
+    fill="#9ca3af">Web Services</text>
+  <text x="560" y="355" text-anchor="middle"
+    font-size="12"
+    font-family="system-ui, sans-serif"
+    fill="#9ca3af">Admin UI · Overrides · Jobs</text>
+
+
+  <!-- Python -->
+  <rect x="680" y="290" width="200" height="80" rx="10"
+    fill="rgba(255,255,255,0.03)"
+    stroke="rgba(255,255,255,0.08)"
+  />
+  <text x="780" y="320" text-anchor="middle"
+    font-size="14" font-weight="600"
+    font-family="system-ui, sans-serif"
+    fill="#e5e7eb">Python</text> 
+  <text x="780" y="340" text-anchor="middle"
+    font-size="12"
+    font-family="system-ui, sans-serif"
+    fill="#9ca3af">Data Processing</text>
+  <text x="780" y="355" text-anchor="middle"
+    font-size="12"
+    font-family="system-ui, sans-serif"
+    fill="#9ca3af">Aggregation · Reporting</text>
+
+  <!-- Lines from ASP.NET Core to services -->
+  <line x1="450" y1="240" x2="120" y2="290"
+    stroke="rgba(255,255,255,0.25)" />
+  <line x1="450" y1="240" x2="340" y2="290"
+    stroke="rgba(255,255,255,0.25)" />
+  <line x1="450" y1="240" x2="560" y2="290"
+    stroke="rgba(255,255,255,0.25)" />
+  <line x1="450" y1="240" x2="780" y2="290"
+    stroke="rgba(255,255,255,0.25)" />
+
+</svg>

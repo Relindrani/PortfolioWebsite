@@ -2,8 +2,45 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
+<script>
+  const modal = document.getElementById("diagram-modal");
+  const modalImg = document.getElementById("diagram-modal-img");
+
+  document.querySelectorAll(".diagram-trigger img").forEach((img) => {
+    img.parentElement.addEventListener("click", () => {
+      modalImg.src = img.src;
+      modalImg.alt = img.alt;
+      modal.showModal();
+    });
+  });
+
+  document.querySelector(".diagram-close")?.addEventListener("click", () => {
+    modal.close();
+  });
+
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) modal.close();
+  });
+</script>
+
+
 <BaseLayout title="Helios — Project Overview" page="helios">
   <div class="page page-helios">
+    <dialog id="diagram-modal" class="diagram-modal">
+  <div class="diagram-surface">
+    <button
+      class="diagram-close"
+      type="button"
+      aria-label="Close diagram"
+    >
+      ✕
+    </button>
+
+    <img id="diagram-modal-img" alt="" />
+  </div>
+</dialog>
+
+
     <!-- Hero -->
     <section class="page-hero" data-animate="hero" data-priority>
       <div class="page-hero-inner">
@@ -92,11 +129,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             <li><strong>Coordination separated from business logic</strong></li>
             <li>
               <strong
-                >Asynchronous by default, synchronous only when safe</strong>
+                >Asynchronous by default, synchronous only when safe</strong
+              >
             </li>
             <li>
               <strong
-                >Infrastructure supports the system — it doesn’t define it</strong>
+                >Infrastructure supports the system — it doesn’t define it</strong
+              >
             </li>
           </ul>
         </header>
@@ -123,10 +162,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
               <summary>View system breakdown</summary>
 
               <div class="architecture-visual">
-                <img
-                  src="/diagrams/helios-system-architecture.svg"
-                  alt="Helios system architecture diagram"
-                />
+                <button
+                  class="diagram-trigger"
+                  aria-label="View system architecture diagram"
+                >
+                  <img
+                    src="/diagrams/helios-system-architecture.svg"
+                    alt="Helios system architecture diagram"
+                  />
+                </button>
               </div>
 
               <div class="architecture-body">
@@ -185,10 +229,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
               <summary>View infrastructure details</summary>
 
               <div class="architecture-visual">
-                <img
-                  src="/diagrams/helios-infrastructure-architecture.svg"
-                  alt="Helios infrastructure architecture diagram"
-                />
+                <button
+                  class="diagram-trigger"
+                  aria-label="View system architecture diagram"
+                >
+                  <img
+                    src="/diagrams/helios-infrastructure-architecture.svg"
+                    alt="Helios infrastructure architecture diagram"
+                  />
+                </button>
               </div>
 
               <div class="architecture-body">

@@ -2455,3 +2455,81 @@ body.loaded main {
     max-width: 72ch;
   }
 }
+
+.diagram-trigger {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: zoom-in;
+}
+
+.diagram-trigger img {
+  max-width: 100%;
+  border-radius: 12px;
+}
+
+.diagram-modal {
+  border: none;
+  padding: 0;
+  background: transparent;
+}
+
+.diagram-modal::backdrop {
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+}
+
+.diagram-modal img {
+  max-width: min(96vw, 1200px);
+  max-height: 90vh;
+  margin: auto;
+  display: block;
+  border-radius: 14px;
+}
+
+.diagram-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(0, 0, 0, 0.6);
+  border: none;
+  color: white;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.diagram-surface {
+  position: relative;
+  margin: auto;
+  padding: 1.25rem;
+  border-radius: 16px;
+
+  /* Helios-style surface */
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid var(--helios-border);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.diagram-surface img {
+  display: block;
+  max-width: min(92vw, 1200px);
+  max-height: 85vh;
+  border-radius: 10px;
+}
+
+.diagram-modal[open] .diagram-surface {
+  animation: diagram-pop 200ms ease-out;
+}
+
+@keyframes diagram-pop {
+  from {
+    transform: scale(0.96);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

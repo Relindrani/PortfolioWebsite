@@ -1,0 +1,725 @@
+/* ============================================================================
+   CONTENT SECTIONS
+   ============================================================================ */
+
+.content-section {
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 1100px) 1fr;
+}
+
+.content-section.align-left > * {
+  grid-column: 2;
+  justify-self: start;
+  border-left: 2px solid rgba(255, 255, 255, 0.04);
+  padding-left: 1.5rem;
+  margin-right: auto;
+}
+
+.content-section.align-right > * {
+  grid-column: 2;
+  justify-self: end;
+  border-right: 2px solid rgba(255, 255, 255, 0.04);
+  padding-right: 1.5rem;
+  margin-left: auto;
+}
+
+.content-section.align-right h2 {
+  text-align: right;
+}
+
+.content-section.align-right h2::after {
+  margin-left: auto;
+}
+
+.content-section h2 {
+  font-size: 1.35rem;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.01em;
+  position: relative;
+}
+
+.content-section h2::after {
+  content: "";
+  display: block;
+  width: 42px;
+  height: 2px;
+  margin-top: 0.6rem;
+  background: linear-gradient(90deg, var(--helios-accent), transparent);
+  opacity: 0.6;
+}
+
+.content-section p {
+  line-height: 1.75;
+  color: var(--text-secondary);
+  margin-bottom: 1.25rem;
+}
+
+@media (max-width: 768px) {
+  .content-section {
+    grid-template-columns: 1fr;
+  }
+
+  .content-section > * {
+    grid-column: 1;
+    justify-self: start;
+    text-align: left;
+  }
+
+  .content-section.align-right h2 {
+    text-align: left;
+  }
+}
+
+
+/* ============================================================================
+   ANIMATIONS
+   ============================================================================ */
+
+[data-animate="section"] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+[data-animate="section"].align-left {
+  transform: translate(-24px, 16px);
+}
+
+[data-animate="section"].align-right {
+  transform: translate(24px, 16px);
+}
+
+[data-animate="section"].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+[data-animate="section"].in-view {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes heliosFade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes heroSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes diagram-pop {
+  from {
+    transform: scale(0.96);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
+
+
+/* ============================================================================
+   LISTS & TYPOGRAPHY
+   ============================================================================ */
+
+.architecture-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 1.5rem 0 2rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.architecture-list li {
+  position: relative;
+  padding-left: 1.25rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.architecture-list li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--helios-accent-weak);
+}
+
+.architecture-list strong {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.capability-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem 2rem;
+  margin-top: 1.5rem;
+}
+
+.capability-grid li {
+  list-style: none;
+  padding-left: 1.1rem;
+  position: relative;
+  color: var(--text-secondary);
+}
+
+.capability-grid li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--helios-accent);
+  opacity: 0.6;
+}
+
+@media (max-width: 640px) {
+  .capability-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+/* ============================================================================
+   HERO SECTION
+   ============================================================================ */
+
+.page-hero {
+  display: flex;
+  justify-content: flex-end;
+  padding-block: clamp(4rem, 10vh, 7rem);
+}
+
+.page-hero > * {
+  max-width: 760px;
+  text-align: right;
+}
+
+.page-hero-inner {
+  max-width: 760px;
+  text-align: right;
+}
+
+.page-hero h1 {
+  font-size: clamp(3rem, 5vw, 3.75rem);
+  position: relative;
+}
+
+.page-hero[data-animate] {
+  opacity: 0;
+}
+
+.page-hero.is-visible {
+  opacity: 1;
+}
+
+.page-hero.is-visible .helios-main {
+  animation: heroSlideIn 0.9s ease-out forwards;
+}
+
+.page-hero.is-visible .helios-sub {
+  animation: heroSlideIn 0.9s ease-out forwards;
+  animation-delay: 0.15s;
+  opacity: 0;
+}
+
+.page-hero.is-visible .page-subhead {
+  animation: heroFadeUp 0.9s ease-out forwards;
+  animation-delay: 0.3s;
+  opacity: 0;
+}
+
+.helios-title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  gap: 0.4rem;
+}
+
+.helios-main {
+  font-size: clamp(3rem, 5vw, 3.75rem);
+  font-weight: 600;
+  position: relative;
+  display: inline-block;
+}
+
+.helios-main::after {
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.6s ease;
+}
+
+.page-hero.is-visible .helios-main::after {
+  transform: scaleX(1);
+  transition-delay: 0.4s;
+}
+
+.helios-sub {
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--helios-accent);
+  opacity: 0.85;
+}
+
+.helios-sub::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -0.6rem;
+  width: 48%;
+  height: 2px;
+  background: linear-gradient(270deg, var(--helios-accent), transparent);
+  opacity: 0.7;
+}
+
+.page-subhead {
+  max-width: 720px;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .page-hero {
+    justify-content: flex-start;
+  }
+
+  .page-hero > * {
+    text-align: left;
+  }
+
+  .helios-title {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .helios-main::after {
+    right: auto;
+    left: 0;
+    background: linear-gradient(90deg, var(--helios-accent), transparent);
+  }
+}
+
+
+
+/* ============================================================================
+   ARCHITECTURE SECTION
+   ============================================================================ */
+
+.architecture {
+  grid-template-columns: 1fr;
+}
+
+.content-section.architecture {
+  padding-block: 6rem;
+}
+
+.architecture .section-header {
+  max-width: 720px;
+  margin-bottom: 3rem;
+}
+
+.content-section.architecture .section-header {
+  max-width: 640px;
+  margin-bottom: 4rem;
+}
+
+.architecture-block {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 2rem;
+  margin-top: 2rem;
+}
+
+.architecture-block summary {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  cursor: pointer;
+  list-style: none;
+}
+
+.architecture-block summary::-webkit-details-marker {
+  display: none;
+}
+
+.architecture-block h3 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.summary-hint {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.architecture-content {
+  margin-top: 2rem;
+}
+
+.architecture-content.split {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 3rem;
+}
+
+.architecture-content.split.reverse {
+  grid-template-columns: 1fr 1.1fr;
+}
+
+@media (max-width: 768px) {
+  .architecture-content.split,
+  .architecture-content.split.reverse {
+    grid-template-columns: 1fr;
+  }
+}
+
+.architecture-text h3 {
+  margin-bottom: 0.75rem;
+}
+
+.architecture-text p {
+  margin-bottom: 1rem;
+}
+
+.architecture-text ul {
+  margin: 1.25rem 0;
+  padding-left: 1.2rem;
+}
+
+.architecture-text li {
+  margin-bottom: 0.75rem;
+}
+
+.architecture-visual {
+  margin: 1.25rem 0;
+}
+
+.architecture-visual img {
+  width: 100%;
+  display: block;
+  height: auto;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.architecture-row {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  margin-block: 4rem;
+}
+
+.architecture-row.align-right {
+  grid-template-columns: 1fr 1.1fr;
+}
+
+.architecture-row.align-right .architecture-text {
+  order: 2;
+}
+
+.architecture-row.align-right .architecture-visual {
+  order: 1;
+}
+
+@media (max-width: 768px) {
+  .architecture-row,
+  .architecture-row.align-right {
+    grid-template-columns: 1fr;
+  }
+}
+
+.architecture-details {
+  margin-top: 1.25rem;
+}
+
+.architecture-details summary {
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--helios-accent);
+  list-style: none;
+}
+
+.architecture-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.architecture-details summary::after {
+  content: " →";
+}
+
+.architecture-details[open] summary::after {
+  content: " ↓";
+}
+
+.architecture-details[open] summary {
+  margin-bottom: 1rem;
+}
+
+.architecture-details ul {
+  margin: 1rem 0;
+  padding-left: 1.25rem;
+  color: var(--text-secondary);
+}
+
+.architecture-intro {
+  max-width: 640px;
+  margin-bottom: 4rem;
+}
+
+.architecture-intro.align-left {
+  margin-right: auto;
+}
+
+.architecture-intro.align-right {
+  margin-left: auto;
+  text-align: right;
+}
+
+.architecture-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 3rem;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .architecture-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.architecture-card {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.04),
+    rgba(255, 255, 255, 0.02)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 2rem;
+}
+
+.architecture-card h3 {
+  margin-bottom: 0.75rem;
+}
+
+.architecture-card p {
+  color: var(--text-secondary);
+  margin-bottom: 1.25rem;
+}
+
+.architecture-card img {
+  display: block;
+  width: 100%;
+  margin-bottom: 1.25rem;
+}
+
+.card-header {
+  background: none;
+}
+
+.architecture-header {
+  max-width: 640px;
+  margin-bottom: 4rem;
+}
+
+.architecture-inner {
+  max-width: 1100px;
+  margin-inline: auto;
+}
+
+.architecture-callouts {
+  display: flex;
+  gap: 1rem;
+  margin: 0.75rem 0 1.25rem;
+  padding: 0;
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+.architecture-callouts li {
+  font-size: 0.8rem;
+  color: #b6bcc9;
+  line-height: 1.4;
+}
+
+.architecture-callouts li::before {
+  content: "—";
+  margin-right: 0.5rem;
+  color: var(--helios-accent-weak);
+}
+
+.architecture-callouts span {
+  color: var(--helios-accent);
+  font-weight: 600;
+}
+
+.architecture-note {
+  margin-top: 1.5rem;
+  padding-left: 1rem;
+  max-width: 70ch;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  opacity: 0.85;
+}
+
+.architecture-note em {
+  font-style: italic;
+}
+
+
+
+
+/* ============================================================================
+   ROADMAP SECTION
+   ============================================================================ */
+
+.roadmap-heading {
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.roadmap-heading::after {
+  content: "";
+  display: block;
+  width: 2rem;
+  height: 1px;
+  background: var(--helios-border);
+  margin-top: 0.5rem;
+}
+
+.roadmap-header {
+  max-width: 72ch;
+  margin-left: auto;
+}
+
+.roadmap-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 3rem;
+}
+
+.roadmap-column {
+  max-width: 60ch;
+}
+
+@media (max-width: 900px) {
+  .roadmap-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .roadmap-column {
+    max-width: 72ch;
+  }
+}
+
+
+
+
+/* ============================================================================
+   DIAGRAM MODAL
+   ============================================================================ */
+
+.diagram-trigger {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: zoom-in;
+}
+
+.diagram-trigger img {
+  max-width: 100%;
+  border-radius: 12px;
+}
+
+.diagram-modal {
+  border: none;
+  padding: 0;
+  background: transparent;
+}
+
+.diagram-modal::backdrop {
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+}
+
+.diagram-modal img {
+  max-width: min(96vw, 1200px);
+  max-height: 90vh;
+  margin: auto;
+  display: block;
+  border-radius: 14px;
+}
+
+.diagram-modal[open] .diagram-surface {
+  animation: diagram-pop 200ms ease-out;
+}
+
+.diagram-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(0, 0, 0, 0.6);
+  border: none;
+  color: white;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.diagram-surface {
+  position: relative;
+  margin: auto;
+  padding: 1.25rem;
+  border-radius: 16px;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid var(--helios-border);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.diagram-surface img {
+  display: block;
+  max-width: min(92vw, 1200px);
+  max-height: 85vh;
+  border-radius: 10px;
+}
+

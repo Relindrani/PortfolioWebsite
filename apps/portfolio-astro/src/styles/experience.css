@@ -1,0 +1,449 @@
+/* ============================================================================
+   PAGE HERO
+   ============================================================================ */
+
+.experience-hero {
+  padding-top: clamp(4rem, 8vh, 6rem);
+  padding-bottom: clamp(1rem, 2vh, 2rem);
+  max-width: 760px;
+}
+
+.experience-hero h1 {
+  font-size: clamp(2.2rem, 4vw, 2.8rem);
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.01em;
+}
+
+.experience-subhead {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  max-width: 640px;
+}
+
+/* ============================================================================
+   EXPERIENCE SECTION & CARDS
+   ============================================================================ */
+
+.experience-section {
+  max-width: 1100px;
+  margin-inline: auto;
+  margin-bottom: 4rem;
+}
+
+.experience-section h2 {
+  margin-bottom: 2rem;
+}
+
+.experience-section h2::after {
+  content: "";
+  display: block;
+  width: 42px;
+  height: 2px;
+  margin-top: 0.6rem;
+  background: linear-gradient(90deg, var(--pro-accent), transparent);
+  opacity: 0.6;
+}
+
+.experience-card {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.04),
+    rgba(255, 255, 255, 0.02)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 1.5rem 1.75rem;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.experience-header {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-bottom: 0.75rem;
+}
+
+.experience-header h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.15rem;
+}
+
+.experience-header::after {
+  content: "";
+  display: block;
+  margin-top: 0.75rem;
+  width: 48px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.experience-company {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.experience-dates {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+.experience-points {
+  margin-top: 1rem;
+  padding-left: 1.25rem;
+}
+
+.experience-points li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+/* ============================================================================
+   TIMELINE
+   ============================================================================ */
+
+.timeline {
+  position: relative;
+  margin-top: 3rem;
+  padding-left: 3rem;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 1.25rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.timeline-item {
+  position: relative;
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.timeline-item:hover .company-logo img {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+.timeline-item:hover .timeline-marker {
+  transform: scale(1.15);
+  box-shadow: 0 0 0 6px rgba(99, 102, 241, 0.3);
+}
+
+.timeline-item.current .experience-card {
+  border-color: var(--pro-border);
+  box-shadow: 0 10px 30px var(--pro-glow);
+}
+
+.timeline-item.current .timeline-marker {
+  background: var(--pro-accent);
+  box-shadow: 0 0 0 6px rgba(99, 102, 241, 0.25);
+}
+
+.timeline-item.current .timeline-year {
+  color: var(--pro-accent);
+}
+
+.timeline-content header {
+  margin-bottom: 0.75rem;
+}
+
+.timeline-content h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.timeline-content ul {
+  margin-top: 0.75rem;
+  padding-left: 1.25rem;
+}
+
+.timeline-content li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.timeline-marker {
+  position: absolute;
+  left: -0.25rem;
+  top: 1.2rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--neutral-accent);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.timeline-year {
+  position: absolute;
+  left: -3.25rem;
+  top: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.company-logo {
+  width: 64px;
+  height: 64px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: grid;
+  place-items: center;
+}
+
+.company-logo img {
+  max-width: 40px;
+  max-height: 40px;
+  opacity: 0.85;
+  filter: grayscale(100%);
+}
+
+@media (max-width: 640px) {
+  .timeline {
+    padding-left: 1.25rem;
+  }
+
+  .timeline::before {
+    left: 0.25rem;
+  }
+
+  .timeline-marker {
+    left: -0.5rem;
+  }
+}
+
+/* ============================================================================
+   EXPERIENCE ANIMATIONS
+   ============================================================================ */
+
+[data-animate="experience"] {
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+[data-animate="experience"].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.9s ease-out,
+    transform 0.9s ease-out;
+}
+
+/* ============================================================================
+   DEEP DIVE DETAILS
+   ============================================================================ */
+
+.experience-deep-dive {
+  margin-top: 1rem;
+}
+
+.experience-deep-dive summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--pro-accent);
+  cursor: pointer;
+  list-style: none;
+}
+
+.experience-deep-dive summary::-webkit-details-marker {
+  display: none;
+}
+
+.experience-deep-dive summary svg {
+  width: 14px;
+  transition: transform 0.3s ease;
+}
+
+.experience-deep-dive[open] summary svg {
+  transform: rotate(180deg);
+}
+
+.deep-dive-content {
+  margin-top: 1rem;
+  padding-left: 0.75rem;
+  border-left: 2px solid rgba(255, 255, 255, 0.08);
+}
+
+.deep-dive-content p,
+.deep-dive-content li {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.experience-deep-dive[open] .deep-dive-content {
+  animation: expandFade 0.35s ease-out;
+}
+
+@keyframes expandFade {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================================================
+   EDUCATION CARDS
+   ============================================================================ */
+
+.education-card {
+  background: none;
+  border: none;
+  padding: 0;
+  width: 100%;
+  position: relative;
+}
+
+.education-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0.4;
+}
+
+.education-card h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.25rem;
+}
+
+.education-school {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.education-date {
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* ============================================================================
+   CERTIFICATION CARDS & GRID
+   ============================================================================ */
+
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+@media (max-width: 900px) {
+  .cert-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .cert-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cert-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.75rem 1.5rem 2rem;
+  min-height: 260px;
+  border-radius: 18px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.06),
+    rgba(255, 255, 255, 0.03)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.cert-card h3 {
+  margin-bottom: 0.25rem;
+}
+
+.cert-card.pending {
+  border-style: dashed;
+  opacity: 0.9;
+}
+
+.cert-card.placeholder {
+  opacity: 0.5;
+  font-style: italic;
+}
+
+.cert-card:not(.pending):hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+}
+
+.school,
+.status {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.cert-badge {
+  width: 88px;
+  height: 88px;
+  border-radius: 20px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  margin-bottom: 1.25rem;
+}
+
+.cert-badge img {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+}
+
+.cert-badge.empty {
+  font-size: 1.5rem;
+  color: var(--text-muted);
+}
+
+.cert-body h3 {
+  font-size: 1rem;
+  line-height: 1.35;
+  margin-bottom: 0.35rem;
+}
+
+.cert-meta {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+}
+
+.cert-description {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}

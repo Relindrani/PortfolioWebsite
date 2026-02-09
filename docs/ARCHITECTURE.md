@@ -1,6 +1,6 @@
 # System Architecture
 
-Helios V2 is designed as a **production-style, event-driven control plane** composed of independently deployable services with explicitly defined boundaries.
+Helios is designed as a **production-style, event-driven control plane** composed of independently deployable services with explicitly defined boundaries.
 
 Each component exists for a single reason, owns a narrow concern, and communicates primarily through **asynchronous events and managed workflows**.
 
@@ -10,7 +10,7 @@ The architecture favors **deterministic behavior, explainability, and operationa
 
 ## Architectural Overview
 
-Helios V2 is organized into four distinct planes:
+Helios is organized into four distinct planes:
 
 ```
 Ingress Plane
@@ -34,7 +34,7 @@ This structure allows the system to evolve safely, degrade gracefully, and remai
 
 # Architecture Diagram
 
-This diagram provides a **high-level view** of Helios V2.
+This diagram provides a **high-level view** of Helios.
 
 It intentionally avoids low-level detail and focuses on **boundaries and data flow**.
 
@@ -101,6 +101,20 @@ It intentionally avoids low-level detail and focuses on **boundaries and data fl
               | Clients   |
               | (Flutter) |
               +-----------+
+```
+
+```mermaid
+graph TD
+A[Clients / Integrations] --> B[Edge BFF<br/>TypeScript]
+B --> C[Core Domain API<br/>ASP.NET Core]
+C --> D[Event Backbone<br/>Kafka / SNS-SQS]
+D --> E[Event Processors<br/>Go / Rust]
+E --> F[Rules Engine<br/>Rust]
+F --> G[AWS Step Functions]
+G --> H[AI / RAG<br/>Python]
+G --> I[PostgreSQL]
+I --> J[Query API<br/>Rails]
+J --> K[Clients / UI]
 ```
 
 ---
@@ -374,7 +388,7 @@ Infrastructure is intentionally conservative; complexity lives in system design,
 
 ## Failure & Recovery
 
-Helios V2 assumes components will fail.
+Helios assumes components will fail.
 
 Documented scenarios include:
 
@@ -390,7 +404,7 @@ Recovery strategies are documented in `/docs/runbooks`.
 
 ## Summary
 
-Helios V2 is not a demo system.
+Helios is not a demo system.
 
 It is a deliberately designed control plane intended to demonstrate:
 

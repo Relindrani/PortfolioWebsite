@@ -1,11 +1,3 @@
-# Event Flow
-
-This document walks through **one concrete event lifecycle** in Helios V2, end to end.
-
-The goal is to show **how data moves**, **where decisions are made**, and **why each boundary exists**.
-
----
-
 ## Example Event
 
 **Event:** `SignalReceived`
@@ -149,4 +141,4 @@ AI output is treated as **advisory only**.
 * AI never overrides rules
 * Analytics are downstream
 
-This flow is representative of **all** Helios V2 behavior.
+This flow is representative of **all** Helios behavior.

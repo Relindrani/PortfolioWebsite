@@ -1,186 +1,121 @@
-# Architecture Decision Log
+# Architectural Decision Records (ADRs)
 
-This document records **significant architectural and technical decisions** made during the design of Helios, along with the rationale behind them.
+This document captures **key architectural decisions** made in Helios V2.
 
-The goal is not to claim that these decisions are universally optimal, but to document **tradeoffs, constraints, and intent**. This log is treated as a living document and evolves as the system changes.
-
----
-
-## ADR-001: Use Rust for Deterministic Business Logic
-
-**Decision**  
-Rust is used to implement correctness-critical and deterministic business logic.
-
-**Context**  
-Helios processes events from multiple sources and applies normalization, conflict resolution, and scoring logic that must behave consistently regardless of load or execution environment.
-
-Duplicating this logic across services or embedding it directly in infrastructure-heavy components increases the risk of divergence and subtle bugs.
-
-**Rationale**
-- Strong compile-time guarantees
-- Memory safety without garbage collection
-- Explicit handling of state and errors
-- Well-suited for deterministic, side-effect-free logic
-- Clear isolation from infrastructure concerns
-
-**Consequences**
-- Increased integration complexity (FFI or service boundary)
-- Smaller pool of contributors familiar with Rust
-- Slower iteration compared to dynamic languages
-
-This tradeoff is intentional to prioritize **correctness and clarity over velocity** for core logic.
+Each ADR records the **context**, **decision**, and **rationale**, with an emphasis on tradeoffs.
 
 ---
 
-## ADR-002: Use Ruby on Rails for Admin and Lifecycle Workflows
+## ADR-001: Use AWS Step Functions for Orchestration
 
-**Decision**  
-Ruby on Rails is used for admin tooling, configuration management, and lifecycle workflows.
+### Context
 
-**Context**  
-Administrative and internal workflows change frequently and benefit from fast iteration, expressive domain modeling, and strong conventions.
+Helios V2 requires:
 
-These workflows are not performance-critical and should not risk the stability of the core system.
+* Long-running workflows
+* Explicit retry and backoff behavior
+* Branching logic
+* Time-based waits
 
-**Rationale**
-- High developer productivity
-- Mature ecosystem for CRUD, background jobs, and email
-- Strong conventions reduce accidental complexity
-- Clear separation from public APIs and core logic
+Temporal was considered, but introduces operational and conceptual overhead.
 
-**Consequences**
-- Additional service to operate
-- Not suitable for high-throughput or latency-sensitive paths
+### Decision
 
-Rails is intentionally scoped to **high-churn, internal-facing functionality**.
+Use **AWS Step Functions** as the orchestration engine.
 
----
+### Rationale
 
-## ADR-003: Use AWS ECS (Fargate) Instead of Kubernetes
+* Managed service with strong reliability guarantees
+* Native AWS integration
+* Clear ownership of time and retries
+* Reduced operational complexity
 
-**Decision**  
-AWS ECS with Fargate is used as the primary container orchestration platform.
-
-**Context**  
-The goal of the project is to demonstrate ownership of production-style infrastructure without introducing unnecessary operational overhead.
-
-Operating Kubernetes clusters adds complexity that is not directly relevant to the learning goals of this system.
-
-**Rationale**
-- Managed control plane
-- No node management
-- Native AWS integration
-- Lower cognitive and operational overhead
-- Still demonstrates containerized, distributed workloads
-
-**Consequences**
-- Less flexibility than Kubernetes
-- Vendor lock-in to AWS primitives
-
-This decision prioritizes **operability and focus** over maximal flexibility.
+The goal is **clarity and correctness**, not maximum flexibility.
 
 ---
 
-## ADR-004: Use SQS for Asynchronous Messaging
+## ADR-002: Deterministic Rules Engine in Rust
 
-**Decision**  
-Amazon SQS is used for asynchronous communication between services.
+### Context
 
-**Context**  
-Helios is designed as an event-driven system but does not require Kafka-level throughput, ordering guarantees, or operational complexity.
+Helios requires:
 
-The primary goals are decoupling, retries, and failure isolation.
+* Explainable decisions
+* Predictable behavior
+* Clear audit trails
 
-**Rationale**
-- Fully managed service
-- Built-in retry and dead-letter queues
-- Simple operational model
-- Integrates naturally with ECS and AWS tooling
+Dynamic or AI-driven decision-making would compromise trust.
 
-**Consequences**
-- Limited message ordering guarantees
-- Not suitable for streaming analytics or real-time pipelines
+### Decision
 
-SQS is chosen as a **pragmatic learning tool** that mirrors many real-world production systems.
+Implement the core rules engine in **Rust** with strict determinism.
 
----
+### Rationale
 
-## ADR-005: Use a Monorepo with Independent Deployments
+* Strong type system
+* Memory safety
+* Performance without runtime unpredictability
+* Clear signaling of correctness-critical logic
 
-**Decision**  
-All applications and services live in a single repository but are built and deployed independently.
-
-**Context**  
-Helios is a cohesive platform with shared concepts, documentation, and infrastructure. However, coupling build and deploy pipelines would reduce clarity and increase risk.
-
-**Rationale**
-- Single source of truth for the system
-- Easier cross-service refactoring
-- Centralized documentation and architecture context
-- Independent CI/CD pipelines per app or service
-
-**Consequences**
-- Requires disciplined repository structure
-- CI/CD configuration is more complex than a single-app repo
-
-This decision reflects a **platform-oriented mindset** rather than convenience.
+Rust is intentionally isolated from infrastructure concerns.
 
 ---
 
-## ADR-006: Use Astro for Portfolio and Documentation Site
+## ADR-003: Event-Driven Communication
 
-**Decision**  
-Astro is used to build a static portfolio and system documentation site.
+### Context
 
-**Context**  
-The portfolio exists to explain the system, document decisions, and provide a narrative layer — not to participate in runtime behavior.
+Direct service-to-service coupling increases failure propagation and reduces evolvability.
 
-It must remain available even when backend services are degraded or offline.
+### Decision
 
-**Rationale**
-- Static-first by default
-- Minimal runtime dependencies
-- Excellent Markdown support
-- Strong performance and SEO characteristics
-- Clear separation from production workloads
+Use **asynchronous events** as the primary integration mechanism.
 
-**Consequences**
-- No dynamic runtime content
-- Requires a separate deployment pipeline
+### Rationale
 
-This reinforces the principle that **documentation and marketing surfaces should be outside the production blast radius**.
+* Loose coupling
+* Natural backpressure
+* Easier reprocessing
+* Clear ownership boundaries
+
+Synchronous APIs are reserved for edge and query use cases.
 
 ---
 
-## ADR-007: Use the MIT License
+## ADR-004: AI as Advisory Only
 
-**Decision**  
-The repository is licensed under the MIT License.
+### Context
 
-**Context**  
-Helios is intended as a learning resource, reference implementation, and portfolio project.
+AI systems are probabilistic and non-deterministic.
 
-**Rationale**
-- Minimal restrictions
-- Encourages reuse and experimentation
-- Widely understood and accepted
-- Suitable for educational and demonstrative projects
+### Decision
 
-**Consequences**
-- No protection against commercial reuse
-- No warranty or liability guarantees
+AI outputs are **never authoritative**.
 
-This aligns with the goal of **openness and accessibility**.
+### Rationale
+
+* Deterministic logic ensures correctness
+* AI augments human understanding
+* Failures degrade gracefully
+
+This preserves trust in system behavior.
 
 ---
 
-## Summary
+## ADR-005: Read-Only Presentation Layer
 
-These decisions reflect a consistent set of priorities:
+### Context
 
-- Correctness over convenience
-- Clarity over cleverness
-- Operational awareness over novelty
-- Depth of understanding over breadth of tooling
+Mixing reads and writes increases complexity and risk.
 
-As the system evolves, new decisions will be recorded here and existing ones may be revisited.
+### Decision
+
+Enforce a **read-only presentation layer** using Rails.
+
+### Rationale
+
+* Clear CQRS separation
+* Faster iteration
+* Reduced blast radius
+
+Writes always flow through the domain API.

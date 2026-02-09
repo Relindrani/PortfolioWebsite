@@ -1,190 +1,358 @@
 # System Architecture
 
-Helios is designed as a **production-style, event-driven system** composed of multiple independently deployed services.  
-Each service has a clearly defined responsibility, enforced boundaries, and a specific reason for existing.
+Helios V2 is designed as a **production-style, event-driven control plane** composed of independently deployable services with explicitly defined boundaries.
 
-The architecture favors **loose coupling, deterministic behavior, and operational clarity** over convenience.
+Each component exists for a single reason, owns a narrow concern, and communicates primarily through **asynchronous events and managed workflows**.
+
+The architecture favors **deterministic behavior, explainability, and operational clarity** over convenience or premature optimization.
 
 ---
 
 ## Architectural Overview
 
-At a high level:
+Helios V2 is organized into four distinct planes:
 
-- External events are ingested through stable API boundaries
-- Core business logic is executed deterministically and isolated from infrastructure
-- Services communicate primarily via asynchronous messages
-- Insights are derived through separate, non-critical analytics pipelines
-- User interaction happens through a cross-platform client
-- Documentation and portfolio surfaces are statically served and decoupled from runtime systems
+```
+Ingress Plane
+    ↓
+Decision Plane
+    ↓
+Presentation Plane
+    ↘
+     Analytics Plane (observational only)
+```
 
-This separation allows the system to degrade gracefully under failure and evolve without cascading changes.
+Rules of the system:
+
+* No plane bypasses another
+* No plane owns more than one concern
+* Analytics never influence live decisions
+
+This structure allows the system to evolve safely, degrade gracefully, and remain explainable under failure.
+
+---
+
+# Architecture Diagram
+
+This diagram provides a **high-level view** of Helios V2.
+
+It intentionally avoids low-level detail and focuses on **boundaries and data flow**.
+
+---
+
+## System Diagram
+
+```
++--------------------+
+|    Clients         |
+|  (Flutter / Ext)   |
++---------+----------+
+          |
+          v
++--------------------+
+|  Edge / BFF        |
+|  TypeScript        |
++---------+----------+
+          |
+          v
++--------------------+
+| Core Domain API    |
+| ASP.NET Core       |
++---------+----------+
+          |
+          v
++--------------------+
+| Event Backbone     |
+| Kafka / SNS/SQS    |
++---------+----------+
+          |
+          v
++--------------------+
+| Event Processors   |
+| Go / Rust          |
++---------+----------+
+          |
+          v
++--------------------+
+| Rules Engine       |
+| Rust               |
++---------+----------+
+          |
+          v
++--------------------+
+| Step Functions     |
+| (Workflows)        |
++----+-----------+---+
+     |           |
+     v           v
++---------+   +-----------+
+| AI / RAG|   | Persistence|
+| Python  |   | PostgreSQL |
++---------+   +-----------+
+                    |
+                    v
+              +-----------+
+              | Query API |
+              | Rails     |
+              +-----+-----+
+                    |
+                    v
+              +-----------+
+              | Clients   |
+              | (Flutter) |
+              +-----------+
+```
+
+---
+
+## Diagram Notes
+
+* Arrows represent **primary data flow**, not control flow
+* Analytics and observability are omitted for clarity
+* All components are independently deployable
+* AI is downstream of deterministic decisions
+
+This diagram is intended for **communication**, not implementation.
+
 
 ---
 
 ## Core Principles
 
-- **Clear ownership boundaries** per service and language
-- **Deterministic business logic** isolated from infrastructure concerns
-- **Event-driven communication** for loose coupling and resilience
-- **Infrastructure as code** for reproducibility and auditability
-- **Failure-aware design**, with explicit recovery paths
-- **Independent deployability** across all applications
+* **Clear ownership boundaries** per service and language
+* **Deterministic decision-making** isolated from infrastructure
+* **Event-driven communication** for loose coupling
+* **Managed orchestration** for long-running workflows
+* **Infrastructure as code** for reproducibility
+* **Failure-aware design** with documented recovery paths
+* **Independent deployability** across all services
 
 ---
 
-## Service Responsibilities
+## Planes & Responsibilities
 
-### ASP.NET Core API — System Orchestrator
+### Ingress Plane — Accept and Record Truth
 
-The ASP.NET Core service acts as the **externally facing control plane**.
+This plane is responsible for **what happened**, not what should happen next.
+
+#### Edge / BFF — TypeScript (Node.js)
 
 **Responsibilities**
-- Authentication and authorization
-- Public API consumed by the Flutter client
-- Event ingestion endpoints
-- Coordination between internal services
-- Publishing messages to queues
+
+* Authentication and authorization
+* Request validation
+* Client-specific request shaping
+* Rate limiting and edge concerns
 
 **Out of scope**
-- Heavy analytics
-- Deterministic business rules
-- High-throughput background processing
 
-This service is optimized for **stability, clarity, and contract-driven APIs**.
-
----
-
-### Rust Core — Deterministic Business Logic
-
-The Rust core encapsulates **correctness-critical domain logic**.
-
-**Responsibilities**
-- Event normalization
-- Conflict resolution
-- Scoring and weighting algorithms
-- Validation logic
-- Deterministic state transitions
-
-**Design intent**
-- No infrastructure awareness
-- Explicit inputs and outputs
-- Language-level guarantees around safety and correctness
-
-This component can be consumed via a service boundary (e.g. gRPC) or as a shared library, depending on deployment needs.
+* Business logic
+* Persistence
+* Decision-making
 
 ---
 
-### Rails Admin — Product & Lifecycle Workflows
+#### Core Domain API — C# / ASP.NET Core
 
-The Rails application provides **high-velocity internal tooling**.
+This service is the **system of record**.
 
 **Responsibilities**
-- Admin UI
-- Feature flag management
-- Rule and configuration management
-- User lifecycle workflows
-- Email notifications
-- Background jobs
+
+* Domain validation
+* Idempotency enforcement
+* Persistence of canonical facts
+* Emitting domain events
 
 **Out of scope**
-- Public APIs
-- Core deterministic logic
-- High-throughput ingestion
 
-Rails is used intentionally to optimize for **developer speed and domain expressiveness** without risking core system stability.
+* Orchestration
+* Analytics
+* AI integration
 
----
-
-### Go Services — Ingestion & Infrastructure Workers
-
-Go-based services handle **infrastructure-adjacent and high-throughput workloads**.
-
-**Responsibilities**
-- Webhook consumers
-- Event fan-in and fan-out
-- High-throughput workers
-- Scheduled infrastructure jobs
-
-These services are designed to be:
-- Simple
-- Concurrent
-- Fast to start
-- Easy to reason about under load
+This service defines truth. Everything else reacts to it.
 
 ---
 
-### Python Analytics — Insight Generation
+### Decision Plane — Evaluate and Act
 
-The Python layer is responsible for **non-critical, asynchronous analysis**.
-
-**Responsibilities**
-- Batch aggregation
-- Trend analysis
-- Scheduled reports
-- Insight generation
-
-This layer is intentionally decoupled so failures or delays do not impact core system behavior.
+This plane determines **what the system should do** in response to events.
 
 ---
 
-### Flutter Client — User Interface
-
-The Flutter application provides a **single, cross-platform client**.
+#### Deterministic Rules Engine — Rust
 
 **Responsibilities**
-- User dashboards
-- Timeline and activity views
-- Client-side state management
-- Offline-friendly behavior (where applicable)
 
-The client communicates exclusively through the public API and does not bypass service boundaries.
+* Policy evaluation
+* Rule execution
+* Scoring and thresholds
+* Explainable decision outputs
+
+**Design constraints**
+
+* No infrastructure awareness
+* Explicit inputs and outputs
+* Fully deterministic behavior
+
+Rust is used here intentionally to signal correctness-critical logic.
 
 ---
 
-### Astro Portfolio — Documentation & Narrative Layer
-
-The Astro-based site serves as the **static documentation and portfolio surface**.
+#### Event Processors — Go & Rust
 
 **Responsibilities**
-- System overview and case study
-- Architecture documentation
-- Design decisions and tradeoffs
-- Failure scenarios and recovery notes
-- Links to live services and source code
 
-This site is:
-- Static
-- Independently deployed
-- Outside the runtime blast radius
+* Event enrichment
+* Routing
+* Fan-in / fan-out
+* Workflow triggering
 
-It exists to **explain the system**, not to participate in it.
+These services are:
+
+* Stateless
+* Horizontally scalable
+* Infrastructure-adjacent
+
+---
+
+#### Workflow Orchestration — AWS Step Functions
+
+**Responsibilities**
+
+* Long-running workflows
+* Retries and backoff
+* Branching logic
+* Time-based behavior
+* Failure handling
+
+Step Functions owns **time and coordination**, not business rules.
+
+---
+
+#### AI / RAG Services — Python
+
+**Responsibilities**
+
+* Embedding generation
+* Retrieval and context assembly
+* LLM interaction
+* Confidence scoring
+
+AI is **augmentative only**.
+Deterministic decisions always take precedence.
+
+---
+
+### Presentation Plane — Explain System State
+
+This plane answers **why the system behaved the way it did**.
+
+---
+
+#### Query API — Ruby on Rails
+
+**Responsibilities**
+
+* Read models and projections
+* Aggregations and timelines
+* Admin and inspection endpoints
+
+**Constraints**
+
+* Read-only
+* No domain mutations
+* No orchestration
+
+Rails is used here to maximize clarity and developer velocity without risking system correctness.
+
+---
+
+#### Client Applications — Flutter
+
+**Responsibilities**
+
+* Cross-platform UI
+* Visualization of system state
+* Interaction and exploration
+
+The client communicates exclusively through public APIs.
+
+---
+
+#### Portfolio & Docs — Astro
+
+**Responsibilities**
+
+* Architecture documentation
+* System narrative
+* Design decisions and tradeoffs
+* Failure analysis
+
+This surface is static, independently deployed, and outside the runtime blast radius.
+
+---
+
+### Analytics Plane — Observe, Never Influence
+
+Analytics are strictly **downstream and non-authoritative**.
+
+**Responsibilities**
+
+* Operational metrics
+* Logs and traces
+* Decision metadata
+* Offline insights
+
+**Tooling**
+
+* OpenTelemetry
+* CloudWatch
+* Prometheus / Grafana
+
+Analytics never participate in real-time decisions.
 
 ---
 
 ## Data & Messaging
 
-### Datastores
+### Data Stores
 
-- **PostgreSQL**
-  - Primary system of record
-  - Transactional consistency
-- **Redis**
-  - Caching
-  - Idempotency keys
-  - Rate limiting
+* **PostgreSQL (RDS)**
 
-### Messaging
+  * Domain facts
+  * Decision outcomes
+  * AI metadata
 
-- **Amazon SQS**
-  - Asynchronous service communication
-  - Retry handling and dead-letter queues
-  - Backpressure management
+* **pgvector**
 
-Messaging is used to:
-- Reduce coupling
-- Absorb load spikes
-- Isolate failures
+  * Embeddings only
+
+* **Object Storage (S3)**
+
+  * Raw payloads
+  * Large artifacts
+
+Write ownership is explicit:
+
+| Data Type      | Owner          |
+| -------------- | -------------- |
+| Domain facts   | ASP.NET Core   |
+| Decisions      | Rust           |
+| Workflow state | Step Functions |
+| AI outputs     | Python         |
+| Read models    | Rails          |
+
+---
+
+### Messaging & Events
+
+* **Kafka or SNS/SQS**
+
+  * Asynchronous communication
+  * Backpressure handling
+  * Failure isolation
+
+Events are the primary integration mechanism between services.
 
 ---
 
@@ -192,40 +360,44 @@ Messaging is used to:
 
 All infrastructure is provisioned via **Terraform**.
 
-Primary components include:
-- AWS ECS (Fargate) for containerized workloads
-- AWS RDS for managed PostgreSQL
-- AWS SQS for messaging
-- VPC with basic network isolation
+Primary components:
 
-Infrastructure is treated as **versioned, reviewable code**.
+* AWS API Gateway
+* AWS ECS (Fargate) and/or Lambda
+* AWS Step Functions
+* AWS RDS (PostgreSQL)
+* VPC with network isolation
+
+Infrastructure is intentionally conservative; complexity lives in system design, not bespoke tooling.
 
 ---
 
-## Failure Considerations
+## Failure & Recovery
 
-The system is designed with the assumption that **components will fail**.
+Helios V2 assumes components will fail.
 
-Examples:
-- Database unavailability
-- Queue backlogs
-- Worker crashes
-- Partial service outages
-- Failed deployments
+Documented scenarios include:
 
-Failure modes and recovery strategies are documented separately in `/docs/runbooks`.
+* Partial workflow failure
+* Event reprocessing
+* Queue backlogs
+* AI service degradation
+* Regional outages
+
+Recovery strategies are documented in `/docs/runbooks`.
 
 ---
 
 ## Summary
 
-Helios is not optimized for minimalism or novelty.
+Helios V2 is not a demo system.
 
-It is optimized to demonstrate:
-- Clear system boundaries
-- Intentional technology choices
-- Real-world tradeoffs
-- Operational awareness
-- The ability to design, deploy, and reason about a distributed system
+It is a deliberately designed control plane intended to demonstrate:
 
-This architecture favors **clarity over cleverness** and **depth over breadth**.
+* Senior-level system thinking
+* Clear architectural boundaries
+* Responsible AI integration
+* Cloud-native operation
+* Explainability under failure
+
+The system favors **clarity over cleverness** and **correctness over convenience**.

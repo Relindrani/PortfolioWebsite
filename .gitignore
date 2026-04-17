@@ -1,0 +1,14 @@
+.DS_Store
+node_modules/
+.astro/
+dist/
+bin/
+obj/
+.dotnet/
+.env
+.env.*
+!.env.example
+postgres-data/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies

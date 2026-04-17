@@ -1,0 +1,11 @@
+@Helios.Api_HostAddress = https://localhost:7195
+
+GET {{Helios.Api_HostAddress}}/health
+Accept: application/json
+
+###
+
+GET {{Helios.Api_HostAddress}}/api/system/summary
+Accept: application/json
+
+###

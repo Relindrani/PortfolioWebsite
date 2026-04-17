@@ -1,0 +1,5 @@
+<Solution>
+  <Folder Name="/apps/">
+    <Project Path="apps/Helios.Api/Helios.Api.csproj" />
+  </Folder>
+</Solution>

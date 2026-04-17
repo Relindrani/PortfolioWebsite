@@ -1,0 +1,6 @@
+namespace Helios.Api.Models;
+
+public sealed record HealthResponse(
+    string Status,
+    string Service,
+    DateTimeOffset TimestampUtc);

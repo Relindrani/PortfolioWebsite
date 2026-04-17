@@ -310,6 +310,14 @@
   color: var(--text-secondary);
 }
 
+.helios-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
 @media (max-width: 768px) {
   .page-hero {
     justify-content: flex-start;
@@ -322,6 +330,10 @@
   .helios-title {
     align-items: flex-start;
     text-align: left;
+  }
+
+  .helios-actions {
+    justify-content: flex-start;
   }
 
   .helios-main::after {

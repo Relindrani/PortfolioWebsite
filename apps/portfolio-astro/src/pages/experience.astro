@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import '../styles/experience.css';
+import "../styles/experience.css";
 ---
 
 <BaseLayout title="Experience" page="professional">
@@ -13,26 +13,129 @@ import '../styles/experience.css';
       </p>
     </section>
 
-    <!-- Work Experience -->
     <section class="experience-section">
       <h2>Experience</h2>
 
       <div class="timeline">
-        <!-- Experience Entry -->
         <article class="timeline-item current">
+          <div class="timeline-year">2026</div>
+
+          <div class="timeline-marker"></div>
+
+          <div class="experience-card">
+            <div class="experience-content">
+              <header class="experience-header">
+                <h3>Principal Software Engineer</h3>
+                <span class="experience-company">
+                  XTIUM (formerly EvolveIP)
+                </span>
+                <span class="experience-dates"> 2026 - Present </span>
+              </header>
+
+              <ul class="experience-points">
+                <li>
+                  Served as lead developer across three strategic initiatives:
+                  a VoIP provisioning and configuration management web app, an
+                  SSO provider, and a data warehouse effort.
+                </li>
+                <li>
+                  Set technical direction, coordinated implementation across
+                  backend and frontend work, and drove delivery through the
+                  full SDLC from design and planning to rollout and support.
+                </li>
+                <li>
+                  Led cross-company initiatives that required alignment across
+                  product, SRE, support, security, and adjacent engineering
+                  teams to meet shared business and operational goals.
+                </li>
+                <li>
+                  Balanced platform modernization with process improvement,
+                  maintainability, and long-term system ownership across
+                  multiple high-impact efforts.
+                </li>
+              </ul>
+
+              <details class="experience-deep-dive">
+                <summary>
+                  <span>Deep dive</span>
+                  <svg viewBox="0 0 20 20" aria-hidden="true">
+                    <path
+                      d="M6 8l4 4 4-4"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"></path>
+                  </svg>
+                </summary>
+
+                <div class="deep-dive-content">
+                  <p>
+                    In this role, I moved beyond single-project delivery and
+                    acted as a lead developer across multiple related systems
+                    that supported core platform capabilities and internal
+                    operations.
+                  </p>
+
+                  <ul>
+                    <li>
+                      Led the technical execution of a
+                      <strong>VoIP provisioning and configuration management web app</strong>,
+                      helping modernize legacy workflows and improve visibility
+                      into long-running operational tasks.
+                    </li>
+                    <li>
+                      Drove development of an <strong>SSO provider</strong>,
+                      shaping authentication flows, access boundaries, and
+                      integration patterns aligned with enterprise identity
+                      requirements.
+                    </li>
+                    <li>
+                      Contributed lead development guidance to a
+                      <strong>data warehouse initiative</strong>, helping define
+                      how operational data could be organized, surfaced, and
+                      used more effectively across the business.
+                    </li>
+                    <li>
+                      Helped strengthen <strong>SDLC practices</strong> across
+                      projects by shaping planning, delivery expectations,
+                      implementation standards, and the handoff into support and
+                      operations.
+                    </li>
+                    <li>
+                      Established architecture and implementation patterns that
+                      could be shared across projects instead of allowing each
+                      effort to drift into its own siloed approach.
+                    </li>
+                    <li>
+                      Worked directly with stakeholders across engineering,
+                      product, support, operations, and other company groups to
+                      keep cross-company initiatives focused on business value
+                      and production realities.
+                    </li>
+                    <li>
+                      Owned execution quality across projects, mentoring through
+                      implementation details while maintaining a strong bar for
+                      maintainability, reliability, and operability.
+                    </li>
+                  </ul>
+                </div>
+              </details>
+            </div>
+          </div>
+        </article>
+
+        <article class="timeline-item">
           <div class="timeline-year">2022</div>
 
           <div class="timeline-marker"></div>
 
           <div class="experience-card">
-            <!-- Content -->
             <div class="experience-content">
               <header class="experience-header">
                 <h3>Software Engineer</h3>
                 <span class="experience-company">
                   XTIUM (formerly EvolveIP)
                 </span>
-                <span class="experience-dates"> Jul 2022 – Present </span>
+                <span class="experience-dates"> Jul 2022 - 2026 </span>
               </header>
 
               <ul class="experience-points">
@@ -76,8 +179,7 @@ import '../styles/experience.css';
                   <ul>
                     <li>
                       Designed and implemented a background provisioning engine
-                      using
-                      <strong>Temporal</strong>, enabling deterministic
+                      using <strong>Temporal</strong>, enabling deterministic
                       workflows with live status streaming back to the UI.
                     </li>
                     <li>
@@ -91,9 +193,9 @@ import '../styles/experience.css';
                       supportability.
                     </li>
                     <li>
-                      Integrated an <strong>AI-powered assistant</strong> using MCP
-                      tooling to provide application-specific context, reducing support
-                      load and improving user experience.
+                      Integrated an <strong>AI-powered assistant</strong> using
+                      MCP tooling to provide application-specific context,
+                      reducing support load and improving user experience.
                     </li>
                     <li>
                       Acted as lead developer on the new platform, guiding
@@ -118,12 +220,11 @@ import '../styles/experience.css';
           <div class="timeline-marker"></div>
 
           <div class="experience-card">
-            <!-- Content -->
             <div class="experience-content">
               <header class="experience-header">
                 <h3>Associate Programmer</h3>
                 <span class="experience-company"> AudioCARE Systems </span>
-                <span class="experience-dates"> Apr 2020 – Jul 2022 </span>
+                <span class="experience-dates"> Apr 2020 - Jul 2022 </span>
               </header>
 
               <ul class="experience-points">
@@ -194,12 +295,9 @@ import '../styles/experience.css';
             </div>
           </div>
         </article>
-
-        <!-- Another entry... -->
       </div>
     </section>
 
-    <!-- Education -->
     <section class="experience-section">
       <h2>Education</h2>
 
@@ -212,18 +310,12 @@ import '../styles/experience.css';
       </article>
     </section>
 
-    <!-- Certifications -->
     <section class="experience-section">
       <h2>Certifications</h2>
 
       <div class="cert-grid">
-        <!-- Future cert placeholder -->
         <article class="cert-card placeholder">
-          <!-- empty, placeholder, or pending styling -->
-          <div class="cert-badge empty">
-            +
-            <!-- <img src="/badges/certname.svg" alt="alt text" /> -->
-          </div>
+          <div class="cert-badge empty">+</div>
           <div class="cert-body">
             <h3>Upcoming Certification</h3>
             <span class="cert-meta">Planned</span>

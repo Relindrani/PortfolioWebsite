@@ -9,3 +9,23 @@ GET {{Helios.Api_HostAddress}}/api/system/summary
 Accept: application/json
 
 ###
+
+POST {{Helios.Api_HostAddress}}/api/signals
+Accept: application/json
+Content-Type: application/json
+Idempotency-Key: demo-signal-001
+
+{
+  "source": "operator-dashboard",
+  "type": "PortfolioViewed",
+  "subject": "helios-control-plane",
+  "payload": "{\"page\":\"helios\"}",
+  "correlationId": "portfolio-demo"
+}
+
+###
+
+GET {{Helios.Api_HostAddress}}/api/signals
+Accept: application/json
+
+###

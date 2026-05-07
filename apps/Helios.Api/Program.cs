@@ -1,5 +1,7 @@
 using Helios.Api.Models;
 using Helios.Api.Services;
+using Helios.Api.Data;
+using Npgsql;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +21,15 @@ builder.Services.AddCors(options =>
     });
 });
 builder.Services.AddSingleton<ISystemSummaryService, DemoSystemSummaryService>();
+builder.Services.AddSingleton(_ =>
+{
+    var connectionString = builder.Configuration.GetConnectionString("Helios")
+        ?? throw new InvalidOperationException("Connection string 'Helios' is required.");
+
+    return new NpgsqlDataSourceBuilder(connectionString).Build();
+});
+builder.Services.AddHostedService<HeliosDatabaseInitializer>();
+builder.Services.AddSingleton<ISignalIngestionService, PostgresSignalIngestionService>();
 
 var app = builder.Build();
 

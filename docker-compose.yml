@@ -16,6 +16,20 @@ services:
       timeout: 5s
       retries: 5
 
+  pgadmin:
+    image: dpage/pgadmin4:9
+    container_name: helios-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: helios
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    depends_on:
+      postgres:
+        condition: service_healthy
+
   helios-api:
     build:
       context: ./apps/Helios.Api
@@ -23,9 +37,23 @@ services:
     container_name: helios-api
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-      ConnectionStrings__Helios: Host=postgres;Port=5432;Database=helios;Username=helios;Password=helios
+      ConnectionStrings__Helios: Host=postgres;Port=5432;Database=helios;Username=helios;Password=helios;GSS Encryption Mode=Disable
     ports:
       - "5091:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  event-processor:
+    build:
+      context: ./services
+      dockerfile: event-processor/Dockerfile
+    container_name: helios-event-processor
+    environment:
+      HELIOS_POSTGRES_DSN: postgres://helios:helios@postgres:5432/helios?sslmode=disable
+      HELIOS_OUTBOX_POLL_INTERVAL: 5s
+      HELIOS_OUTBOX_BATCH_SIZE: 10
+      HELIOS_RULES_ENGINE_PATH: /app/helios_rules
     depends_on:
       postgres:
         condition: service_healthy
@@ -52,3 +80,4 @@ services:
 
 volumes:
   postgres-data:
+  pgadmin-data:

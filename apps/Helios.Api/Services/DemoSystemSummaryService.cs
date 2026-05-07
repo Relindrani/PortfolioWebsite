@@ -40,6 +40,10 @@ public sealed class DemoSystemSummaryService : ISystemSummaryService
                     Description: "Provide one endpoint with high-level state for the first Helios dashboard.",
                     Status: "Ready"),
                 new SystemCapability(
+                    Name: "Signal Intake",
+                    Description: "Accept idempotent signal submissions and emit the first canonical SignalRecorded event envelope.",
+                    Status: "Ready"),
+                new SystemCapability(
                     Name: "Workflow Timeline",
                     Description: "Surface long-running workflow progress and recent events.",
                     Status: "Planned")
